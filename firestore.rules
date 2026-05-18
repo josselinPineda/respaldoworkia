@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper function to validate that data includes empresaId
+    function hasEmpresaId() {
+      return request.resource.data.empresaId is string && request.resource.data.empresaId.size() > 0;
+    }
+
+    // Reglas para la colección de usuarios
+    match /usuarios/{usuarioId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Reglas para la colecciÃ³n de empresa (documentos de empresas)
+    match /empresa/{empresaId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Reglas para Clientes
+    match /clientes/{clienteId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && hasEmpresaId();
+      allow update: if isAuthenticated() && hasEmpresaId();
+      allow delete: if isAuthenticated();
+    }
+
+    // Reglas para Trabajos
+    match /trabajos/{trabajoId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && hasEmpresaId();
+      allow update: if isAuthenticated() && hasEmpresaId();
+      allow delete: if isAuthenticated();
+    }
+
+    // Reglas para Trabajos Asignados
+    match /trabajos_asignados/{asignacionId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && hasEmpresaId();
+      allow update: if isAuthenticated() && hasEmpresaId();
+      allow delete: if isAuthenticated();
+    }
+
+    // Reglas para Actividades
+    match /actividades/{actividadId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && hasEmpresaId();
+      allow update: if isAuthenticated() && hasEmpresaId();
+      allow delete: if isAuthenticated();
+    }
+
+    // Reglas para Gastos
+    match /gastos/{gastoId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && hasEmpresaId();
+      allow update: if isAuthenticated() && hasEmpresaId();
+      allow delete: if isAuthenticated();
+    }
+    
+    // Reglas para Problemas
+    match /problemas/{problemaId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && hasEmpresaId();
+      allow update: if isAuthenticated() && hasEmpresaId();
+      allow delete: if isAuthenticated();
+    }
+  }
+}

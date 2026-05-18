@@ -1,0 +1,6 @@
+  String _formatHours(double hours) {
+    if (hours == 0) return '0h 0m';
+    final int h = hours.truncate();
+    final int m = ((hours - h) * 60).round();
+    return '${h}h ${m}m';
+  }

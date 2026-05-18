@@ -1,0 +1,3459 @@
+{
+  "actividades": {
+    "ACT_TRB_TRABAJO1_1764364156839": {
+      "descripcion": "Desceipcion1 trabajo1",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764363882400",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364156,
+        "_nanoseconds": 839097000
+      },
+      "materialCostoUnitario": 5,
+      "notas": "Notas trabajo1",
+      "trabajoId": "TRB_TRABAJO1",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ALLAN_TORRES",
+      "tecnicoNombre": "Administrador",
+      "materialCantidad": 50,
+      "tecnicoId": "USR_ADMIN",
+      "horasTrabajadas": 23,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364156,
+        "_nanoseconds": 839103000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364156,
+        "_nanoseconds": 839107000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Materiales"
+    },
+    "ACT_TRB_TRABAJO2_1764364105446": {
+      "descripcion": "Descripción1 trabajo2",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764363930460",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364105,
+        "_nanoseconds": 446934000
+      },
+      "materialCostoUnitario": 8,
+      "notas": "5",
+      "trabajoId": "TRB_TRABAJO2",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "tecnicoNombre": "Administrador",
+      "materialCantidad": 8,
+      "tecnicoId": "USR_ADMIN",
+      "horasTrabajadas": 10,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364105,
+        "_nanoseconds": 446939000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364105,
+        "_nanoseconds": 446943000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Materiales trabajo2"
+    },
+    "ACT_TRB_TRABAJO3_1764364060451": {
+      "descripcion": "Descripción1 Trabajo3",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364060,
+        "_nanoseconds": 451186000
+      },
+      "materialCostoUnitario": 50,
+      "notas": "Notas Trabajo3",
+      "trabajoId": "TRB_TRABAJO3",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ALLAN_TORRES",
+      "tecnicoNombre": "Administrador",
+      "materialCantidad": 2,
+      "tecnicoId": "USR_ADMIN",
+      "horasTrabajadas": 5,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364060,
+        "_nanoseconds": 451191000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364060,
+        "_nanoseconds": 451196000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Materia Trabajo3"
+    },
+    "ACT_TRB_TRABAJO3_1764364186757": {
+      "descripcion": "Descripción2 Trabajo3",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ARNOLDO_FLORES_1764363974778",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364186,
+        "_nanoseconds": 757689000
+      },
+      "materialCostoUnitario": null,
+      "notas": "Notas trabajo3",
+      "trabajoId": "TRB_TRABAJO3",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "tecnicoNombre": "Administrador",
+      "materialCantidad": null,
+      "tecnicoId": "USR_ADMIN",
+      "horasTrabajadas": 72,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364186,
+        "_nanoseconds": 757695000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364186,
+        "_nanoseconds": 757700000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": null
+    },
+    "ACT_WORK_0_1764364818744": {
+      "descripcion": "Actividad realizada 0",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_10_1764364818739__CL_COMERCIAL_1764364818736_1764364818741",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "materialCostoUnitario": 89,
+      "notas": "Nota de actividad 0",
+      "trabajoId": "TRB_JOB_10_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_COMERCIAL_1764364818736",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 2,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 4,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 0"
+    },
+    "ACT_WORK_1_1764364818744": {
+      "descripcion": "Actividad realizada 1",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_1_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "materialCostoUnitario": 54,
+      "notas": "Nota de actividad 1",
+      "trabajoId": "TRB_JOB_1_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_EMPRESA_1764364818737",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 2,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 8,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 1"
+    },
+    "ACT_WORK_2_1764364818744": {
+      "descripcion": "Actividad realizada 2",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764364818742",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "materialCostoUnitario": 61,
+      "notas": "Nota de actividad 2",
+      "trabajoId": "TRB_TRABAJO2",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 2,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 5,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 2"
+    },
+    "ACT_WORK_3_1764364818744": {
+      "descripcion": "Actividad realizada 3",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_2_1764364818739__CL_INVERSIONES_1764364818736_1764364818742",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "materialCostoUnitario": 98,
+      "notas": "Nota de actividad 3",
+      "trabajoId": "TRB_JOB_2_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_INVERSIONES_1764364818736",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 3,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 6,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 3"
+    },
+    "ACT_WORK_4_1764364818744": {
+      "descripcion": "Actividad realizada 4",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_11_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "materialCostoUnitario": 83,
+      "notas": "Nota de actividad 4",
+      "trabajoId": "TRB_JOB_11_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_EMPRESA_1764364818737",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 5,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 4,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 4"
+    },
+    "ACT_WORK_5_1764364818744": {
+      "descripcion": "Actividad realizada 5",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_6_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "materialCostoUnitario": 68,
+      "notas": "Nota de actividad 5",
+      "trabajoId": "TRB_JOB_6_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 1,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 1,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 5"
+    },
+    "ACT_WORK_6_1764364818744": {
+      "descripcion": "Actividad realizada 6",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764363930460",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 744000000
+      },
+      "materialCostoUnitario": 88,
+      "notas": "Nota de actividad 6",
+      "trabajoId": "TRB_TRABAJO2",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 8,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 6,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 6"
+    },
+    "ACT_WORK_7_1764364818745": {
+      "descripcion": "Actividad realizada 7",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764363882400",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 51,
+      "notas": "Nota de actividad 7",
+      "trabajoId": "TRB_TRABAJO1",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ALLAN_TORRES",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 6,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 7,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 7"
+    },
+    "ACT_WORK_8_1764364818745": {
+      "descripcion": "Actividad realizada 8",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764364818742",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 51,
+      "notas": "Nota de actividad 8",
+      "trabajoId": "TRB_TRABAJO2",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 6,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 2,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 8"
+    },
+    "ACT_WORK_9_1764364818745": {
+      "descripcion": "Actividad realizada 9",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_2_1764364818739__CL_INVERSIONES_1764364818736_1764364818742",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 33,
+      "notas": "Nota de actividad 9",
+      "trabajoId": "TRB_JOB_2_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_INVERSIONES_1764364818736",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 6,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 6,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 9"
+    },
+    "ACT_WORK_10_1764364818745": {
+      "descripcion": "Actividad realizada 10",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 92,
+      "notas": "Nota de actividad 10",
+      "trabajoId": "TRB_TRABAJO3",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ALLAN_TORRES",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 1,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 6,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 10"
+    },
+    "ACT_WORK_11_1764364818745": {
+      "descripcion": "Actividad realizada 11",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 57,
+      "notas": "Nota de actividad 11",
+      "trabajoId": "TRB_TRABAJO3",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ALLAN_TORRES",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 10,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 6,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 11"
+    },
+    "ACT_WORK_12_1764364818745": {
+      "descripcion": "Actividad realizada 12",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_1_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 90,
+      "notas": "Nota de actividad 12",
+      "trabajoId": "TRB_JOB_1_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_EMPRESA_1764364818737",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 1,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 3,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 12"
+    },
+    "ACT_WORK_13_1764364818745": {
+      "descripcion": "Actividad realizada 13",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_1_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 38,
+      "notas": "Nota de actividad 13",
+      "trabajoId": "TRB_JOB_1_1764364818739",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_EMPRESA_1764364818737",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 3,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 8,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 13"
+    },
+    "ACT_WORK_14_1764364818745": {
+      "descripcion": "Actividad realizada 14",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ARNOLDO_FLORES_1764363974778",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "fechaActividad": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "materialCostoUnitario": 38,
+      "notas": "Nota de actividad 14",
+      "trabajoId": "TRB_TRABAJO3",
+      "creadoPor": "USR_ADMIN",
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "tecnicoNombre": "Tecnico Generado",
+      "materialCantidad": 4,
+      "tecnicoId": "USR_TECNICO",
+      "horasTrabajadas": 7,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 745000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true,
+      "materialNombre": "Material 14"
+    }
+  },
+  "clientes": {
+    "CL_ALLAN_TORRES": {
+      "latitud": 13.312230644644162,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Allan",
+      "direccion": "Barrio Valle",
+      "idioma": "es",
+      "nombre": "Allan Torres",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "AllanT",
+      "longitud": -87.16916777193546,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363448,
+        "_nanoseconds": 408363000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363448,
+        "_nanoseconds": 408363000
+      },
+      "telefono": "12345678",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "allantorres230@gmail.com",
+      "activo": true
+    },
+    "CL_ARNOLDO_FLORES": {
+      "latitud": 13.31422217126698,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Arnoldo",
+      "direccion": "Barrio Valle",
+      "nombre": "Arnoldo Flores",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "ArnoldoF",
+      "longitud": -87.16748166829348,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363749,
+        "_nanoseconds": 232894000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363749,
+        "_nanoseconds": 232894000
+      },
+      "telefono": "12345678",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "arnoldotorres230@gmail.com",
+      "activo": true,
+      "idioma": "en"
+    },
+    "CL_ASOCIADOS_1764364818735": {
+      "latitud": 13.236008038963124,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 0",
+      "direccion": "Direccion 0, Ciudad",
+      "idioma": "en",
+      "nombre": "Asociados G Ltda. 8",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Asociados G Ltda. 8",
+      "longitud": -87.14884350115565,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 735000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 735000000
+      },
+      "telefono": "28932644",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto0@client.com",
+      "activo": true
+    },
+    "CL_HERMANOS_1764364818735": {
+      "latitud": 13.3614756023417,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 1",
+      "direccion": "Direccion 1, Ciudad",
+      "idioma": "en",
+      "nombre": "Hermanos H Corp. 72",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Hermanos H Corp. 72",
+      "longitud": -87.171549758002,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "telefono": "23598972",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto1@client.com",
+      "activo": true
+    },
+    "CL_COMERCIAL_1764364818736": {
+      "latitud": 13.29503609317488,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 8",
+      "direccion": "Direccion 8, Ciudad",
+      "idioma": "es",
+      "nombre": "Comercial B Inc. 68",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Comercial B Inc. 68",
+      "longitud": -87.15440328523935,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "telefono": "25602583",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto8@client.com",
+      "activo": true
+    },
+    "CL_GRUPO_1764364818736": {
+      "latitud": 13.242831726346514,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 3",
+      "direccion": "Direccion 3, Ciudad",
+      "idioma": "en",
+      "nombre": "Grupo E Ltda. 32",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Grupo E Ltda. 32",
+      "longitud": -87.12941250469586,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "telefono": "21864280",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto3@client.com",
+      "activo": true
+    },
+    "CL_CORPORACION_1764364818736": {
+      "latitud": 13.321156023963622,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 4",
+      "direccion": "Direccion 4, Ciudad",
+      "idioma": "es",
+      "nombre": "Corporacion F S.A. 27",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Corporacion F S.A. 27",
+      "longitud": -87.10703808749737,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "telefono": "24550479",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto4@client.com",
+      "activo": true
+    },
+    "CL_INDUSTRIAS_1764364818736": {
+      "latitud": 13.214016210770893,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 5",
+      "direccion": "Direccion 5, Ciudad",
+      "idioma": "es",
+      "nombre": "Industrias C Corp. 54",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Industrias C Corp. 54",
+      "longitud": -87.18326612246577,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "telefono": "21744208",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto5@client.com",
+      "activo": true
+    },
+    "CL_INVERSIONES_1764364818736": {
+      "latitud": 13.395979755075729,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 6",
+      "direccion": "Direccion 6, Ciudad",
+      "idioma": "en",
+      "nombre": "Inversiones I Inc. 16",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Inversiones I Inc. 16",
+      "longitud": -87.17681556470195,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "telefono": "23734985",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto6@client.com",
+      "activo": true
+    },
+    "CL_HERMANOS_1764364818736": {
+      "latitud": 13.396396541430004,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 7",
+      "direccion": "Direccion 7, Ciudad",
+      "idioma": "es",
+      "nombre": "Hermanos H Inc. 59",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Hermanos H Inc. 59",
+      "longitud": -87.01302886631571,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 736000000
+      },
+      "telefono": "26079461",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto7@client.com",
+      "activo": true
+    },
+    "CL_INDUSTRIAS_1764364818737": {
+      "latitud": 13.211067485810542,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 9",
+      "direccion": "Direccion 9, Ciudad",
+      "idioma": "en",
+      "nombre": "Industrias C Inc. 44",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Industrias C Inc. 44",
+      "longitud": -87.193679750745,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "telefono": "25739585",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto9@client.com",
+      "activo": true
+    },
+    "CL_EMPRESA_1764364818737": {
+      "latitud": 13.306724230037698,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 14",
+      "direccion": "Direccion 14, Ciudad",
+      "idioma": "es",
+      "nombre": "Empresa A Inc. 69",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Empresa A Inc. 69",
+      "longitud": -87.13000242233167,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "telefono": "27464881",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto14@client.com",
+      "activo": true
+    },
+    "CL_SERVICIOS_1764364818737": {
+      "latitud": 13.386746681991557,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 13",
+      "direccion": "Direccion 13, Ciudad",
+      "idioma": "en",
+      "nombre": "Servicios D Ltda. 82",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Servicios D Ltda. 82",
+      "longitud": -87.1411277107016,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "telefono": "29538327",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto13@client.com",
+      "activo": true
+    },
+    "CL_ASOCIADOS_1764364818737": {
+      "latitud": 13.366039064325369,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "personaContacto": "Contacto 12",
+      "direccion": "Direccion 12, Ciudad",
+      "idioma": "en",
+      "nombre": "Asociados G S. de R.L. 61",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Asociados G S. de R.L. 61",
+      "longitud": -87.01853453743132,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 737000000
+      },
+      "telefono": "26057363",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "contacto12@client.com",
+      "activo": true
+    }
+  },
+  "empresa": {
+    "EMP_SERVICIOS_DEMO": {
+      "latitud": 13.3123,
+      "direccion": "Avenida Central 123, Choluteca",
+      "nombre": "Servicios Técnicos Demo",
+      "logoUrl": "https://example.com/logo_demo.png",
+      "longitud": -87.1754,
+      "razonSocial": "Servicios Técnicos Demo S.A.",
+      "nombreComercial": "Demo HVAC",
+      "telefono": "123456789",
+      "email": "allantorres230@gmail.com",
+      "activo": true,
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763564168,
+        "_nanoseconds": 462000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763564182,
+        "_nanoseconds": 459000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "creadoPor": "USR_ADMIN"
+    },
+    "EMP_VRITO": {
+      "latitud": 13.312234886117347,
+      "direccion": "Barrio vALLE",
+      "nombre": "Vrito",
+      "logoUrl": "",
+      "creadoPor": "USR_ADMIN",
+      "razonSocial": "Vrito",
+      "longitud": -87.16913055628538,
+      "nombreComercial": "Vrito",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764346907,
+        "_nanoseconds": 716772000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764346907,
+        "_nanoseconds": 716775000
+      },
+      "telefono": "12346578",
+      "actualizadoPor": "USR_ADMIN",
+      "email": "vrtio@gmail.com",
+      "activo": true
+    }
+  },
+  "gastos": {
+    "GST_TG_MAT_1764364061485": {
+      "descripcion": "Materiales para actividad: Descripción1 Trabajo3 - Materia Trabajo3 (x2)",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO3",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364061,
+        "_nanoseconds": 482904000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 100,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364061,
+        "_nanoseconds": 485266000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364061,
+        "_nanoseconds": 485277000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_TG_MAT_1764364105737": {
+      "descripcion": "Materiales para actividad: Descripción1 trabajo2 - Materiales trabajo2 (x8)",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764363930460",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO2",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364105,
+        "_nanoseconds": 737298000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 64,
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364105,
+        "_nanoseconds": 737401000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364105,
+        "_nanoseconds": 737408000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_TG_MAT_1764364157267": {
+      "descripcion": "Materiales para actividad: Desceipcion1 trabajo1 - Materiales (x50)",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764363882400",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO1",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364157,
+        "_nanoseconds": 267172000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 250,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364157,
+        "_nanoseconds": 267282000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364157,
+        "_nanoseconds": 267289000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_0_1764364818746": {
+      "descripcion": "Gasto generado 0",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764364818742",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO1",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 319,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_1_1764364818746": {
+      "descripcion": "Gasto generado 1",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_1_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_1_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 396,
+      "clienteId": "CL_EMPRESA_1764364818737",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_2_1764364818746": {
+      "descripcion": "Gasto generado 2",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_4_1764364818739__CL_CORPORACION_1764364818736_1764364818742",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_4_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 327,
+      "clienteId": "CL_CORPORACION_1764364818736",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_3_1764364818746": {
+      "descripcion": "Gasto generado 3",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO3",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 136,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_4_1764364818746": {
+      "descripcion": "Gasto generado 4",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_2_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_2_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 354,
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_5_1764364818746": {
+      "descripcion": "Gasto generado 5",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_7_1764364818739__CL_ALLAN_TORRES_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_7_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 178,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_6_1764364818746": {
+      "descripcion": "Gasto generado 6",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_14_1764364818739__CL_ASOCIADOS_1764364818735_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_14_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 474,
+      "clienteId": "CL_ASOCIADOS_1764364818735",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_7_1764364818746": {
+      "descripcion": "Gasto generado 7",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_INDUSTRIAS_1764364818736_1764364818742",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO2",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 454,
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_8_1764364818746": {
+      "descripcion": "Gasto generado 8",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_6_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_6_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 167,
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 746000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_9_1764364818747": {
+      "descripcion": "Gasto generado 9",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO3",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 246,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_10_1764364818747": {
+      "descripcion": "Gasto generado 10",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764364818742",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO2",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 101,
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_11_1764364818747": {
+      "descripcion": "Gasto generado 11",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_10_1764364818739__CL_COMERCIAL_1764364818736_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_10_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 309,
+      "clienteId": "CL_COMERCIAL_1764364818736",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_12_1764364818747": {
+      "descripcion": "Gasto generado 12",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_5_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_JOB_5_1764364818739",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 281,
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_13_1764364818747": {
+      "descripcion": "Gasto generado 13",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764363882400",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO1",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 483,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    },
+    "GST_EXP_14_1764364818747": {
+      "descripcion": "Gasto generado 14",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ALLAN_TORRES_1764364818741",
+      "urlComprobante": "",
+      "idTipoGasto": "TG_MAT",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "trabajoId": "TRB_TRABAJO2",
+      "fechaGasto": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "creadoPor": "USR_ADMIN",
+      "monto": 222,
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "actualizadoPor": "USR_ADMIN",
+      "activo": true
+    }
+  },
+  "mensajes_ia": {
+    "zo1sg89JiBkMRDwoZk0v": {
+      "clienteId": "CL_ANUBIS",
+      "destinatarios": [
+        "brayanjoseortiz32@gmail.com"
+      ],
+      "trabajoId": "TRB_MANTENIMIENTO_LAPTOP",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "estado": "enviado",
+      "fechaEnvio": {
+        "__type__": "timestamp",
+        "_seconds": 1764086958,
+        "_nanoseconds": 751000000
+      }
+    }
+  },
+  "perfiles": {
+    "PERF_ADMIN": {
+      "descripcion": "Acceso total al sistema",
+      "pantallasPermitidas": [
+        "dashboard",
+        "clientes",
+        "trabajos",
+        "gastos",
+        "balance",
+        "usuarios",
+        "configuracion"
+      ],
+      "nombre": "Administrador",
+      "activo": true
+    },
+    "PERF_FIN": {
+      "descripcion": "Acceso a gastos y reportes financieros",
+      "pantallasPermitidas": [
+        "gastos",
+        "balance"
+      ],
+      "nombre": "Finanzas",
+      "activo": true
+    },
+    "PERF_TEC": {
+      "descripcion": "Acceso a sus trabajos y actividades",
+      "pantallasPermitidas": [
+        "dashboard",
+        "agenda",
+        "misTrabajos"
+      ],
+      "nombre": "Técnico",
+      "activo": true
+    }
+  },
+  "problemas": {
+    "PRB_PROBLEMA1_1764364246759": {
+      "descripcion": "Detalles problema1",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764363882400",
+      "reportadoPorId": "USR_ADMIN",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion1",
+      "titulo": "Problema1",
+      "fotoUrl": "image.png",
+      "creadoPorId": "USR_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364246,
+        "_nanoseconds": 759046000
+      },
+      "activo": true,
+      "estado": "resuelto",
+      "resueltoPorId": "USR_TECNICO",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364293,
+        "_nanoseconds": 843753000
+      },
+      "actualizadoPorId": "USR_TECNICO"
+    },
+    "PRB_PROBLEMA2_1764364288655": {
+      "descripcion": "Detalles problema2",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764363930460",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Dirección2",
+      "titulo": "Problema2",
+      "fotoUrl": "imagen.png",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364288,
+        "_nanoseconds": 654883000
+      },
+      "activo": true,
+      "estado": "resuelto",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364341,
+        "_nanoseconds": 211151000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROBLEMA3_1764364316379": {
+      "descripcion": "Detalles problema3",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "reportadoPorId": "USR_TECNICO",
+      "estado": "pendiente",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "resueltoPorId": "",
+      "direccion": "Dirección3",
+      "titulo": "Problema3",
+      "actualizadoPorId": "USR_TECNICO",
+      "fotoUrl": "imagen3.png",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364316,
+        "_nanoseconds": 379664000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364316,
+        "_nanoseconds": 379674000
+      },
+      "activo": true
+    },
+    "PRB_PROB_0_1764364818747": {
+      "descripcion": "Problema reportado 0",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_11_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 0",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 747000000
+      },
+      "activo": true,
+      "estado": "en_proceso",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 748000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_1_1764364818748": {
+      "descripcion": "Problema reportado 1",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764364818742",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 1",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 748000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 748000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_2_1764364818748": {
+      "descripcion": "Problema reportado 2",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_2_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 2",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_3_1764364818751": {
+      "descripcion": "Problema reportado 3",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_10_1764364818739__CL_COMERCIAL_1764364818736_1764364818741",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 3",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "en_proceso",
+      "resueltoPorId": "",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_4_1764364818751": {
+      "descripcion": "Problema reportado 4",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_11_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 4",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "resuelto",
+      "resueltoPorId": "",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_5_1764364818751": {
+      "descripcion": "Problema reportado 5",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_4_1764364818739__CL_CORPORACION_1764364818736_1764364818742",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 5",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_6_1764364818751": {
+      "descripcion": "Problema reportado 6",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_2_1764364818739__CL_INVERSIONES_1764364818736_1764364818742",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 6",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_7_1764364818751": {
+      "descripcion": "Problema reportado 7",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 7",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_8_1764364818751": {
+      "descripcion": "Problema reportado 8",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764364818742",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 8",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "en_proceso",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_9_1764364818751": {
+      "descripcion": "Problema reportado 9",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_1_1764364818739__CL_EMPRESA_1764364818737_1764364818741",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 9",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 751000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_10_1764364818751": {
+      "descripcion": "Problema reportado 10",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764363930460",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 10",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_11_1764364818752": {
+      "descripcion": "Problema reportado 11",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ARNOLDO_FLORES_1764363974778",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 11",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "activo": true,
+      "estado": "pendiente",
+      "resueltoPorId": "",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_12_1764364818752": {
+      "descripcion": "Problema reportado 12",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_14_1764364818739__CL_ASOCIADOS_1764364818735_1764364818741",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 12",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "activo": true,
+      "estado": "resuelto",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_13_1764364818752": {
+      "descripcion": "Problema reportado 13",
+      "trabajoAsignadoId": "ASIG_TRB_TRABAJO3__CL_ARNOLDO_FLORES_1764363974778",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 13",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "activo": true,
+      "estado": "en_proceso",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    },
+    "PRB_PROB_14_1764364818752": {
+      "descripcion": "Problema reportado 14",
+      "trabajoAsignadoId": "ASIG_TRB_JOB_7_1764364818739__CL_ALLAN_TORRES_1764364818741",
+      "reportadoPorId": "USR_TECNICO",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "direccion": "Direccion del problema",
+      "titulo": "Fallo en sistema 14",
+      "fotoUrl": "",
+      "creadoPorId": "USR_TECNICO",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "activo": true,
+      "estado": "en_proceso",
+      "resueltoPorId": "USR_ADMIN",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 752000000
+      },
+      "actualizadoPorId": "USR_ADMIN"
+    }
+  },
+  "tiposGasto": {
+    "TG_MAT": {
+      "creadoPor": "USR_ADMINISTRADOR",
+      "descripcion": "Compra de repuestos y filtros",
+      "codigo": "MAT",
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1800025000,
+        "_nanoseconds": 0
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1800024000,
+        "_nanoseconds": 0
+      },
+      "actualizadoPor": "USR_ADMINISTRADOR",
+      "nombre": "Materiales",
+      "activo": true
+    }
+  },
+  "trabajos": {
+    "TRB_TRABAJO1": {
+      "descripcion": "Descripción trabajo1",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 230,
+      "titulo": "Trabajo1",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363824,
+        "_nanoseconds": 408697000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363824,
+        "_nanoseconds": 408702000
+      },
+      "activo": true
+    },
+    "TRB_TRABAJO2": {
+      "descripcion": "Descripción trabajo2",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 523,
+      "titulo": "Trabajo2",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363852,
+        "_nanoseconds": 801174000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363852,
+        "_nanoseconds": 801183000
+      },
+      "activo": true
+    },
+    "TRB_TRABAJO3": {
+      "descripcion": "Descripción trabajo3",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 5230,
+      "titulo": "Trabajo3",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363953,
+        "_nanoseconds": 707204000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363953,
+        "_nanoseconds": 707211000
+      },
+      "activo": true
+    },
+    "TRB_JOB_0_1764364818738": {
+      "descripcion": "Descripcion detallada para Reparacion de Generador 0",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 3714,
+      "titulo": "Reparacion de Generador 0",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 738000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 738000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_1_1764364818739": {
+      "descripcion": "Descripcion detallada para Mantenimiento de Computadora 1",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 569,
+      "titulo": "Mantenimiento de Computadora 1",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_2_1764364818739": {
+      "descripcion": "Descripcion detallada para Mantenimiento de Red 2",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 2409,
+      "titulo": "Mantenimiento de Red 2",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_3_1764364818739": {
+      "descripcion": "Descripcion detallada para Reparacion de Aire Acondicionado 3",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 4701,
+      "titulo": "Reparacion de Aire Acondicionado 3",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_4_1764364818739": {
+      "descripcion": "Descripcion detallada para Mantenimiento de Servidor 4",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 3891,
+      "titulo": "Mantenimiento de Servidor 4",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_5_1764364818739": {
+      "descripcion": "Descripcion detallada para Reparacion de Red 5",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 2051,
+      "titulo": "Reparacion de Red 5",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_6_1764364818739": {
+      "descripcion": "Descripcion detallada para Mantenimiento de Aire Acondicionado 6",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 4758,
+      "titulo": "Mantenimiento de Aire Acondicionado 6",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_7_1764364818739": {
+      "descripcion": "Descripcion detallada para Revision de Red 7",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 2011,
+      "titulo": "Revision de Red 7",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_8_1764364818739": {
+      "descripcion": "Descripcion detallada para Diagnostico de Impresora 8",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 1009,
+      "titulo": "Diagnostico de Impresora 8",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_9_1764364818739": {
+      "descripcion": "Descripcion detallada para Diagnostico de Generador 9",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 264,
+      "titulo": "Diagnostico de Generador 9",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_10_1764364818739": {
+      "descripcion": "Descripcion detallada para Instalacion de Aire Acondicionado 10",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 3630,
+      "titulo": "Instalacion de Aire Acondicionado 10",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_11_1764364818739": {
+      "descripcion": "Descripcion detallada para Mantenimiento de Camaras 11",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 3202,
+      "titulo": "Mantenimiento de Camaras 11",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_12_1764364818739": {
+      "descripcion": "Descripcion detallada para Mantenimiento de Red 12",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 4697,
+      "titulo": "Mantenimiento de Red 12",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_13_1764364818739": {
+      "descripcion": "Descripcion detallada para Actualizacion de Computadora 13",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 1096,
+      "titulo": "Actualizacion de Computadora 13",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    },
+    "TRB_JOB_14_1764364818739": {
+      "descripcion": "Descripcion detallada para Revision de Aire Acondicionado 14",
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "costo": 1863,
+      "titulo": "Revision de Aire Acondicionado 14",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 739000000
+      },
+      "activo": true
+    }
+  },
+  "trabajosAsignados": {
+    "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764363882400": {
+      "estado": "Pendiente",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1766901600,
+        "_nanoseconds": 0
+      },
+      "trabajoId": "TRB_TRABAJO1",
+      "precioFinal": 230,
+      "frecuenciaCiclico": "mensual",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764050400,
+        "_nanoseconds": 0
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_TECNICO"
+      ],
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1763618400,
+        "_nanoseconds": 0
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363882,
+        "_nanoseconds": 400247000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363882,
+        "_nanoseconds": 400255000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764363930460": {
+      "estado": "Pendiente",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1772258400,
+        "_nanoseconds": 0
+      },
+      "trabajoId": "TRB_TRABAJO2",
+      "precioFinal": 523,
+      "frecuenciaCiclico": "trimestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764309600,
+        "_nanoseconds": 0
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_TECNICO"
+      ],
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764050400,
+        "_nanoseconds": 0
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363930,
+        "_nanoseconds": 460016000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363930,
+        "_nanoseconds": 460021000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_TRABAJO3__CL_ALLAN_TORRES_1764363974385": {
+      "estado": "Pendiente",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1779948000,
+        "_nanoseconds": 0
+      },
+      "trabajoId": "TRB_TRABAJO3",
+      "precioFinal": 5230,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764482400,
+        "_nanoseconds": 0
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_TECNICO"
+      ],
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764309600,
+        "_nanoseconds": 0
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363974,
+        "_nanoseconds": 385430000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363974,
+        "_nanoseconds": 385437000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_TRABAJO3__CL_ARNOLDO_FLORES_1764363974778": {
+      "estado": "Pendiente",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1779948000,
+        "_nanoseconds": 0
+      },
+      "trabajoId": "TRB_TRABAJO3",
+      "precioFinal": 5230,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764482400,
+        "_nanoseconds": 0
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_TECNICO"
+      ],
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764309600,
+        "_nanoseconds": 0
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363974,
+        "_nanoseconds": 778963000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764363974,
+        "_nanoseconds": 778972000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_1_1764364818739__CL_EMPRESA_1764364818737_1764364818741": {
+      "estado": "Pendiente",
+      "esCiclico": false,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_1_1764364818739",
+      "precioFinal": 744,
+      "frecuenciaCiclico": "trimestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_TECNICO"
+      ],
+      "clienteId": "CL_EMPRESA_1764364818737",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_6_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741": {
+      "estado": "Pendiente",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_6_1764364818739",
+      "precioFinal": 3828,
+      "frecuenciaCiclico": "trimestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_JUAN_MARTINEZ_378"
+      ],
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_7_1764364818739__CL_ALLAN_TORRES_1764364818741": {
+      "estado": "Completado",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_7_1764364818739",
+      "precioFinal": 3375,
+      "frecuenciaCiclico": "mensual",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_JUAN_MARTINEZ_378"
+      ],
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_10_1764364818739__CL_COMERCIAL_1764364818736_1764364818741": {
+      "estado": "En Progreso",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_10_1764364818739",
+      "precioFinal": 4678,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_MARIA_PEREZ_940"
+      ],
+      "clienteId": "CL_COMERCIAL_1764364818736",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_11_1764364818739__CL_EMPRESA_1764364818737_1764364818741": {
+      "estado": "En Progreso",
+      "esCiclico": false,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_11_1764364818739",
+      "precioFinal": 1074,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_JUAN_MARTINEZ_243"
+      ],
+      "clienteId": "CL_EMPRESA_1764364818737",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_TRABAJO2__CL_ALLAN_TORRES_1764364818741": {
+      "estado": "Completado",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_TRABAJO2",
+      "precioFinal": 122,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_MARIA_PEREZ_940"
+      ],
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_14_1764364818739__CL_ASOCIADOS_1764364818735_1764364818741": {
+      "estado": "En Progreso",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_14_1764364818739",
+      "precioFinal": 1804,
+      "frecuenciaCiclico": "mensual",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_MARIA_PEREZ_940"
+      ],
+      "clienteId": "CL_ASOCIADOS_1764364818735",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_2_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741": {
+      "estado": "En Progreso",
+      "esCiclico": false,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_2_1764364818739",
+      "precioFinal": 4019,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_MARIA_PEREZ_940"
+      ],
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_5_1764364818739__CL_INDUSTRIAS_1764364818736_1764364818741": {
+      "estado": "Pendiente",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "trabajoId": "TRB_JOB_5_1764364818739",
+      "precioFinal": 1037,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_TECNICO"
+      ],
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 741000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_TRABAJO2__CL_INDUSTRIAS_1764364818736_1764364818742": {
+      "estado": "Pendiente",
+      "esCiclico": false,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "trabajoId": "TRB_TRABAJO2",
+      "precioFinal": 569,
+      "frecuenciaCiclico": "anual",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_TECNICO"
+      ],
+      "clienteId": "CL_INDUSTRIAS_1764364818736",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_4_1764364818739__CL_CORPORACION_1764364818736_1764364818742": {
+      "estado": "En Progreso",
+      "esCiclico": false,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "trabajoId": "TRB_JOB_4_1764364818739",
+      "precioFinal": 3177,
+      "frecuenciaCiclico": "trimestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_JUAN_MARTINEZ_378"
+      ],
+      "clienteId": "CL_CORPORACION_1764364818736",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_2_1764364818739__CL_INVERSIONES_1764364818736_1764364818742": {
+      "estado": "En Progreso",
+      "esCiclico": false,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "trabajoId": "TRB_JOB_2_1764364818739",
+      "precioFinal": 3335,
+      "frecuenciaCiclico": "mensual",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_MARIA_RUIZ_443"
+      ],
+      "clienteId": "CL_INVERSIONES_1764364818736",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_TRABAJO2__CL_ARNOLDO_FLORES_1764364818742": {
+      "estado": "En Progreso",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "trabajoId": "TRB_TRABAJO2",
+      "precioFinal": 4158,
+      "frecuenciaCiclico": "mensual",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_JUAN_SANCHEZ_198"
+      ],
+      "clienteId": "CL_ARNOLDO_FLORES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_TRABAJO1__CL_ALLAN_TORRES_1764364818742": {
+      "estado": "Completado",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "trabajoId": "TRB_TRABAJO1",
+      "precioFinal": 872,
+      "frecuenciaCiclico": "anual",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_MARIA_RUIZ_443"
+      ],
+      "clienteId": "CL_ALLAN_TORRES",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    },
+    "ASIG_TRB_JOB_13_1764364818739__CL_ASOCIADOS_1764364818735_1764364818742": {
+      "estado": "Completado",
+      "esCiclico": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "proximaFecha": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "trabajoId": "TRB_JOB_13_1764364818739",
+      "precioFinal": 2732,
+      "frecuenciaCiclico": "semestral",
+      "fechaFin": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "creadoPor": "Administrador",
+      "tecnicosAsignados": [
+        "USR_JUAN_MARTINEZ_378"
+      ],
+      "clienteId": "CL_ASOCIADOS_1764364818735",
+      "fechaInicio": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 742000000
+      },
+      "actualizadoPor": "Administrador",
+      "activo": true
+    }
+  },
+  "usuarios": {
+    "USR_ADMIN": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763392380,
+        "_nanoseconds": 71323000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763392380,
+        "_nanoseconds": 71323000
+      },
+      "authUid": "9qzVwK5sxchSO6g2MuDe5HBZmJn2",
+      "email": "admin@gmail.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "31713603",
+      "nombre": "Administrador"
+    },
+    "USR_ALLAN_TORRES": {
+      "empresaId": "EMP_VRITO",
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764346908,
+        "_nanoseconds": 798898000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764346908,
+        "_nanoseconds": 798898000
+      },
+      "idioma": "es",
+      "telefono": "",
+      "nombre": "Allan Torres",
+      "authUid": "dE9pnubxM8c2fEeGGl3Ktk5FwCm2",
+      "email": "allantorres230@gmail.com",
+      "activo": true
+    },
+    "USR_FINANZAS": {
+      "perfilId": "PERF_FIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763389780,
+        "_nanoseconds": 40883000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763389780,
+        "_nanoseconds": 40883000
+      },
+      "telefono": "",
+      "nombre": "Finanzas",
+      "authUid": "7ycoYOys6AStF7bIE1NPL0BPyuH3",
+      "email": "fin@gmail.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO"
+    },
+    "USR_TECNICO": {
+      "perfilId": "PERF_TEC",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763389751,
+        "_nanoseconds": 873897000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1763389751,
+        "_nanoseconds": 873897000
+      },
+      "nombre": "Tecnico",
+      "authUid": "dwx6sL150YU6oEXBjNFEpHqR0g22",
+      "email": "tec@gmail.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "12345678"
+    },
+    "USR_JUAN_MARTINEZ_378": {
+      "perfilId": "PERF_TEC",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 731000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 731000000
+      },
+      "authUid": "edc31251-5cf2-4517-90bc-9605f9f6742e",
+      "email": "juan.martinez27@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "97902714",
+      "nombre": "Juan Martinez"
+    },
+    "USR_PATRICIA_VASQUEZ_874": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "authUid": "0743ffaf-f31a-4d6a-95a8-2f1708e4b092",
+      "email": "patricia.vasquez35@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "98902470",
+      "nombre": "Patricia Vasquez"
+    },
+    "USR_JUAN_SANCHEZ_198": {
+      "perfilId": "PERF_TEC",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "authUid": "349e5ddd-2373-420e-920d-62c83f89574b",
+      "email": "juan.sanchez77@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "96615707",
+      "nombre": "Juan Sanchez"
+    },
+    "USR_MARIA_PEREZ_940": {
+      "perfilId": "PERF_TEC",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "authUid": "74fe8335-fc1e-426b-8e03-2c25b30f5fdb",
+      "email": "maria.perez65@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "97135684",
+      "nombre": "Maria Perez"
+    },
+    "USR_ELENA_GOMEZ_328": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 732000000
+      },
+      "authUid": "bb95001d-4754-42e1-a449-27bbaa363cc2",
+      "email": "elena.gomez3@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "99634717",
+      "nombre": "Elena Gomez"
+    },
+    "USR_JUAN_FERNANDEZ_510": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "26ad5d62-2860-4e41-954b-a59e6b9bd591",
+      "email": "juan.fernandez74@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "94956934",
+      "nombre": "Juan Fernandez"
+    },
+    "USR_SOFIA_CASTRO_251": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "5d5669fc-a1c1-4ca3-9243-0019a3425826",
+      "email": "sofia.castro99@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "96481464",
+      "nombre": "Sofia Castro"
+    },
+    "USR_CARMEN_FERNANDEZ_402": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "98ffcad1-d236-44fa-bdb8-6d89a6279578",
+      "email": "carmen.fernandez82@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "99953796",
+      "nombre": "Carmen Fernandez"
+    },
+    "USR_MARIA_RUIZ_443": {
+      "perfilId": "PERF_TEC",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "b048feb8-c482-4942-bac0-7e5336bd5c97",
+      "email": "maria.ruiz1@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "93253668",
+      "nombre": "Maria Ruiz"
+    },
+    "USR_ROBERTO_GOMEZ_897": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "8e43f547-42b5-4fdf-b4ea-451ebb54d293",
+      "email": "roberto.gomez41@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "95455923",
+      "nombre": "Roberto Gomez"
+    },
+    "USR_JUAN_MARTINEZ_243": {
+      "perfilId": "PERF_TEC",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "556b4a63-b1a9-43d5-a47a-e25da518edee",
+      "email": "juan.martinez66@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "92479020",
+      "nombre": "Juan Martinez"
+    },
+    "USR_PATRICIA_CASTRO_746": {
+      "perfilId": "PERF_FIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "5fcc0159-0be9-417b-a4d0-973ec35642c2",
+      "email": "patricia.castro71@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "92995733",
+      "nombre": "Patricia Castro"
+    },
+    "USR_PEDRO_CASTRO_572": {
+      "perfilId": "PERF_ADMIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "d501f787-b283-4b72-b570-ac8d93ff58ba",
+      "email": "pedro.castro11@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "98181386",
+      "nombre": "Pedro Castro"
+    },
+    "USR_CARLOS_GOMEZ_765": {
+      "perfilId": "PERF_FIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 733000000
+      },
+      "authUid": "9813ad65-b79f-44e3-854b-9e807eb31226",
+      "email": "carlos.gomez25@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "96954071",
+      "nombre": "Carlos Gomez"
+    },
+    "USR_ELENA_GARCIA_449": {
+      "perfilId": "PERF_FIN",
+      "fechaCreacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 734000000
+      },
+      "fechaActualizacion": {
+        "__type__": "timestamp",
+        "_seconds": 1764364818,
+        "_nanoseconds": 734000000
+      },
+      "authUid": "d4ce660c-b492-4616-ba30-a4f3ad2fe6d7",
+      "email": "elena.garcia7@example.com",
+      "activo": true,
+      "empresaId": "EMP_SERVICIOS_DEMO",
+      "telefono": "98326964",
+      "nombre": "Elena Garcia"
+    }
+  }
+}
