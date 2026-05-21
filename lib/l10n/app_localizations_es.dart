@@ -1470,4 +1470,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get emailNotFoundError => 'El correo no existe';
+
+  @override
+  String get invalidPhoneError => 'El teléfono no es válido';
 }

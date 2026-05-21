@@ -2899,6 +2899,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The email doesn\'t exist'**
   String get emailNotFoundError;
+
+  /// No description provided for @invalidPhoneError.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone number is not valid'**
+  String get invalidPhoneError;
 }
 
 class _AppLocalizationsDelegate

@@ -49,6 +49,7 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
   final _titleController = TextEditingController();
   final _detailsController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
   late String _selectedTipo;
   String? _selectedRefId;
@@ -56,6 +57,7 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
   // Campos para edición avanzada (Admin)
   String? _selectedReporterId;
   String? _selectedResolverId;
+  bool _isSaving = false;
 
   @override
   void initState() {
@@ -163,9 +165,11 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
         }).toList();
       }
 
-      if (widget.role == 'PERF_TEC') {
-        return [
-          const DropdownMenuItem(
+      // Para Admin/Técnico: sin asignaciones, no permitir seleccionar un "Trabajo" genérico,
+      // porque el guardado depende de una asignación concreta (trabajoAsignadoId/clienteId).
+      if (widget.role == 'PERF_ADMIN' || widget.role == 'PERF_TEC') {
+        return const [
+          DropdownMenuItem(
             value: '__NONE__',
             enabled: false,
             child: Text('No hay trabajos asignados'),
@@ -207,21 +211,25 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
   }
 
   Future<void> _onGuardar() async {
-    print('>>> CLICK DETECTADO EN EL BOTÓN GUARDAR <<<');
+    if (_isSaving) return;
+
+    FocusScope.of(context).unfocus();
     final title = _titleController.text.trim();
     final details = _detailsController.text.trim();
 
-    if (title.isEmpty) {
-       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Por favor, escribe un título')));
-       return;
+    if (!(_formKey.currentState?.validate() ?? false)) {
+      if (mounted && _autovalidateMode != AutovalidateMode.always) {
+        setState(() => _autovalidateMode = AutovalidateMode.always);
+      }
+      return;
     }
-    if (details.isEmpty) {
-       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Por favor, escribe la descripción')));
-       return;
-    }
-    if (!_formKey.currentState!.validate()) return;
 
     try {
+      setState(() => _isSaving = true);
+
+      if (_selectedTipo == 'Trabajo' && (_selectedRefId == null || _selectedRefId == '__NONE__')) {
+        throw 'Selecciona una asignación';
+      }
       String trabajoAsignadoId = '';
       String trabajoId = '';
       String clienteId = '';
@@ -244,7 +252,12 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
 
       final session = context.read<UserSessionProvider>();
       final userId = session.userId;
-      if (session.empresaId.isEmpty) throw 'No se encontró el ID de la empresa en la sesión';
+      if (userId.isEmpty) {
+        throw 'Sesión inválida: falta el ID del usuario';
+      }
+      if (session.empresaId.isEmpty) {
+        throw 'No se encontró el ID de la empresa en la sesión';
+      }
 
       final reportadoPor = _selectedReporterId ?? userId;
       final resueltoPor = _selectedResolverId ?? '';
@@ -283,16 +296,28 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
             );
 
       // ESPERAMOS a que termine el guardado real en Firebase
-      await widget.onSave(problema);
-      
+      await widget
+          .onSave(problema)
+          .timeout(const Duration(seconds: 20), onTimeout: () {
+        throw 'Tiempo de espera al guardar. Revisa tu conexión e intenta de nuevo.';
+      });
+       
       if (mounted) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
         Navigator.of(context).pop();
       }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error al guardar: $e'), backgroundColor: Colors.red),
+          SnackBar(
+            content: Text('Error al guardar: $e'),
+            backgroundColor: Colors.red,
+          ),
         );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isSaving = false);
       }
     }
   }
@@ -321,7 +346,12 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.close),
-                    onPressed: () => Navigator.of(context).maybePop(),
+                    onPressed: _isSaving
+                        ? null
+                        : () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            Navigator.of(context).maybePop();
+                          },
                   ),
                 ],
               ),
@@ -336,6 +366,7 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                   ),
                   child: Form(
                     key: _formKey,
+                    autovalidateMode: _autovalidateMode,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -345,7 +376,9 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                           decoration: InputDecoration(
                             labelText: AppLocalizations.of(context)!.titleLabel,
                           ),
-                          validator: (v) => v!.isEmpty ? 'Campo obligatorio' : null,
+                          validator: (v) => (v ?? '').trim().isEmpty
+                              ? AppLocalizations.of(context)!.requiredError
+                              : null,
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
@@ -356,7 +389,9 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                             )!.problemDetailsLabel,
                           ),
                           maxLines: 3,
-                          validator: (v) => v!.isEmpty ? 'Campo obligatorio' : null,
+                          validator: (v) => (v ?? '').trim().isEmpty
+                              ? AppLocalizations.of(context)!.requiredError
+                              : null,
                         ),
                         const SizedBox(height: 8),
                         if ((widget.allowedTipos ?? [_selectedTipo]).length > 1)
@@ -468,7 +503,7 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                                     const SizedBox(height: 8),
                                     Consumer<UsuariosViewModel>(
                                       builder: (context, usuariosVM, child) {
-                                        return DropdownButtonFormField<String>(
+                                        return DropdownButtonFormField<String?>(
                                           value: _selectedResolverId,
                                           menuMaxHeight: 300,
                                           decoration: InputDecoration(
@@ -477,7 +512,7 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                                             )!.resolvedByLabel,
                                           ),
                                           items: [
-                                            DropdownMenuItem(
+                                            DropdownMenuItem<String?>(
                                               value: null,
                                               child: Text(
                                                 AppLocalizations.of(
@@ -486,7 +521,7 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                                               ),
                                             ),
                                             ...usuariosVM.usuarios.map((u) {
-                                              return DropdownMenuItem(
+                                              return DropdownMenuItem<String?>(
                                                 value: u.id,
                                                 child: Text(
                                                   '${u.nombre} (${_formatRole(u.perfilId)})',
@@ -509,18 +544,33 @@ class _DialogoReporteProblemaState extends State<DialogoReporteProblema> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                              onPressed: () => Navigator.of(context).maybePop(),
+                              onPressed: _isSaving
+                                  ? null
+                                  : () {
+                                      ScaffoldMessenger.of(context)
+                                          .hideCurrentSnackBar();
+                                      Navigator.of(context).maybePop();
+                                    },
                               child: Text(AppLocalizations.of(context)!.cancelButton),
                             ),
                             const SizedBox(width: 8),
                             ElevatedButton(
-                              onPressed: _onGuardar,
+                              onPressed: _isSaving ? null : _onGuardar,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Theme.of(context).primaryColor,
                                 foregroundColor: Colors.white,
                                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                               ),
-                              child: Text(AppLocalizations.of(context)!.saveButton),
+                              child: _isSaving
+                                  ? const SizedBox(
+                                      width: 18,
+                                      height: 18,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: Colors.white,
+                                      ),
+                                    )
+                                  : Text(AppLocalizations.of(context)!.saveButton),
                             ),
                           ],
                         ),

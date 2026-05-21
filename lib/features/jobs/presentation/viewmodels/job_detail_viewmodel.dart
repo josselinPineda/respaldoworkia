@@ -27,6 +27,10 @@ class JobDetailViewModel extends ChangeNotifier {
   final String userName;
   final String currentUserId;
 
+  // Evita re-consultas repetidas del estado de sesión por asignación (re-login).
+  final Set<String> _sessionHydratedAssignments = {};
+  final Set<String> _sessionHydratingAssignments = {};
+
   JobDetailViewModel({
     required this.clientesVM,
     required this.asignadosVM,
@@ -467,6 +471,33 @@ class JobDetailViewModel extends ChangeNotifier {
   }
 
   // ========== GESTIÓN DE SESIONES (MVVM) ==========
+
+  bool hasHydratedSessionForAssignment(String trabajoAsignadoId) =>
+      _sessionHydratedAssignments.contains(trabajoAsignadoId);
+
+  bool isHydratingSessionForAssignment(String trabajoAsignadoId) =>
+      _sessionHydratingAssignments.contains(trabajoAsignadoId);
+
+  /// En técnicos, precarga desde backend si esta asignación ya tiene sesión activa
+  /// para el usuario actual. Esto evita que al re-login aparezca "Iniciar"
+  /// momentáneamente antes de que llegue el estado real.
+  Future<void> ensureSessionHydratedForAssignment(
+    String trabajoAsignadoId,
+  ) async {
+    if (userRole != 'PERF_TEC') return;
+    if (_sessionHydratedAssignments.contains(trabajoAsignadoId)) return;
+    if (_sessionHydratingAssignments.contains(trabajoAsignadoId)) return;
+
+    _sessionHydratingAssignments.add(trabajoAsignadoId);
+    notifyListeners();
+    await sesionesVM.hydrateActiveSessionForAssignment(
+      trabajoAsignadoId,
+      currentUserId,
+    );
+    _sessionHydratingAssignments.remove(trabajoAsignadoId);
+    _sessionHydratedAssignments.add(trabajoAsignadoId);
+    notifyListeners();
+  }
 
   /// Indica si hay una sesión activa para el usuario actual.
   bool get isSessionActiveForCurrentUser =>

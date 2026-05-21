@@ -47,7 +47,9 @@ class ProblemsPage extends StatefulWidget {
 /// Estado asociado a [ProblemsPage].  Gestiona los filtros y la
 /// interacción con la lista de problemas, así como la apertura
 /// de diálogos para mostrar detalles.
-class _ProblemsPageState extends State<ProblemsPage> {
+class _ProblemsPageState extends State<ProblemsPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   // Controladores de búsqueda independientes
   final TextEditingController _pendingSearchController =
       TextEditingController();
@@ -61,6 +63,8 @@ class _ProblemsPageState extends State<ProblemsPage> {
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() => setState(() {}));
     // Listeners para actualizar la UI al escribir
     _pendingSearchController.addListener(() => setState(() {}));
     _historySearchController.addListener(() => setState(() {}));
@@ -81,6 +85,7 @@ class _ProblemsPageState extends State<ProblemsPage> {
 
   @override
   void dispose() {
+    _tabController.dispose();
     _pendingSearchController.dispose();
     _historySearchController.dispose();
     super.dispose();
@@ -492,19 +497,19 @@ class _ProblemsPageState extends State<ProblemsPage> {
     allRoles.sort();
     final roleOptions = ['Todos', ...allRoles];
 
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
           title: Text(AppLocalizations.of(context)!.problemsPageTitle),
           bottom: TabBar(
+            controller: _tabController,
             tabs: [
               Tab(text: AppLocalizations.of(context)!.pendingStatus),
               Tab(text: AppLocalizations.of(context)!.resolvedStatus),
             ],
           ),
         ),
-        body: TabBarView(
+      body: TabBarView(
+        controller: _tabController,
           children: [
             // Pestaña Pendientes
             _buildTabContent(
@@ -544,7 +549,8 @@ class _ProblemsPageState extends State<ProblemsPage> {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
+      floatingActionButton: _tabController.index == 0
+            ? FloatingActionButton(
           onPressed: () {
             // Mostrar el diálogo reutilizable para reportar problema.
             final trabajosVM = context.read<TrabajosViewModel>();
@@ -579,14 +585,15 @@ class _ProblemsPageState extends State<ProblemsPage> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Error al reportar: $e'), backgroundColor: Colors.red),
                     );
+                    rethrow;
                   }
                 },
               ),
             );
           },
           child: const Icon(Icons.add),
-        ),
-      ),
+        )
+            : null,
     );
   }
 

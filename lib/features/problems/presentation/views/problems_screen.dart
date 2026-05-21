@@ -64,6 +64,9 @@ class _ProblemsScreenContentState extends State<_ProblemsScreenContent>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      if (mounted) setState(() {});
+    });
     _pendingSearchController.addListener(_onPendingSearchChanged);
     _historySearchController.addListener(_onHistorySearchChanged);
 
@@ -137,10 +140,12 @@ class _ProblemsScreenContentState extends State<_ProblemsScreenContent>
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showReportDialog(context, vm),
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: _tabController.index == 0
+          ? FloatingActionButton(
+              onPressed: () => _showReportDialog(context, vm),
+              child: const Icon(Icons.add),
+            )
+          : null,
     );
   }
 

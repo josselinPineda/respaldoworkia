@@ -428,7 +428,34 @@ class _BalancePageState extends State<BalancePage> {
       return esCompletado && dentroRango(job.fechaFin);
     }).length;
     
-    int gastosCount = reportes.gastosCalculados.length;
+    final gastosEnRango = reportes.gastosCalculados
+        .where((g) => g.activo && dentroRango(g.fechaGasto))
+        .toList();
+    int gastosCount = gastosEnRango.length;
+
+    DateTime _startOfDay(DateTime d) => DateTime(d.year, d.month, d.day);
+    DateTime _startOfWeek(DateTime d) {
+      final day = _startOfDay(d);
+      return day.subtract(Duration(days: day.weekday - DateTime.monday));
+    }
+
+    DateTime _bucketForExpenseCount(DateTime d) {
+      final day = _startOfDay(d);
+      if (_selectedRange == 'Este Año') return DateTime(day.year, day.month, 1);
+      if (_selectedRange == t.thisMonthOption) return _startOfWeek(day);
+      return day;
+    }
+
+    Map<DateTime, int> gastosCountPorPeriodo() {
+      final map = <DateTime, int>{};
+      for (final g in gastosEnRango) {
+        final key = _bucketForExpenseCount(g.fechaGasto);
+        map[key] = (map[key] ?? 0) + 1;
+      }
+      return map;
+    }
+
+    final gastosCountPorFecha = gastosCountPorPeriodo();
 
     // Load ClientesVM and GastosVM for naming
     final clientesVM = context.read<ClientesViewModel>();
@@ -591,6 +618,15 @@ class _BalancePageState extends State<BalancePage> {
                         icon: Icons.receipt_long,
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 16),
+                  _ChartContainer(
+                    title: 'N° de Gastos por Período',
+                    child: _CountByPeriodChart(
+                      countsByDate: gastosCountPorFecha,
+                      barColor: Colors.orange,
+                      label: 'Gastos',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   _ChartContainer(
@@ -1283,6 +1319,143 @@ class _BalanceCharts extends StatefulWidget {
 
   @override
   State<_BalanceCharts> createState() => _BalanceChartsState();
+}
+
+class _CountByPeriodChart extends StatelessWidget {
+  const _CountByPeriodChart({
+    required this.countsByDate,
+    required this.barColor,
+    required this.label,
+  });
+
+  final Map<DateTime, int> countsByDate;
+  final Color barColor;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    if (countsByDate.isEmpty) return const SizedBox.shrink();
+
+    final fechas = countsByDate.keys.toList()..sort();
+    final maxY = countsByDate.values.fold<int>(0, (a, b) => a > b ? a : b);
+
+    return SizedBox(
+      height: 300,
+      child: BarChart(
+        BarChartData(
+          barTouchData: BarTouchData(
+            touchTooltipData: BarTouchTooltipData(
+              getTooltipColor: (_) =>
+                  Theme.of(context).colorScheme.inverseSurface,
+              getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                final fecha = fechas[group.x.toInt()];
+                final count = rod.toY.round();
+                return BarTooltipItem(
+                  '${fecha.day}/${fecha.month}\n',
+                  const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: '$label: $count',
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+          titlesData: FlTitlesData(
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                getTitlesWidget: (double value, TitleMeta meta) {
+                  final index = value.toInt();
+                  if (index < 0 || index >= fechas.length) {
+                    return const SizedBox.shrink();
+                  }
+                  if (fechas.length > 7 && index % (fechas.length ~/ 5) != 0) {
+                    return const SizedBox.shrink();
+                  }
+                  final fecha = fechas[index];
+                  return SideTitleWidget(
+                    meta: meta,
+                    space: 16,
+                    child: Text(
+                      '${fecha.day}/${fecha.month}',
+                      style: const TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                      ),
+                    ),
+                  );
+                },
+                reservedSize: 38,
+              ),
+            ),
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                reservedSize: 40,
+                getTitlesWidget: (value, meta) {
+                  if (value == 0) return const SizedBox.shrink();
+                  return Text(
+                    value.toInt().toString(),
+                    style: const TextStyle(
+                      fontSize: 10,
+                      color: Colors.black54,
+                    ),
+                  );
+                },
+              ),
+            ),
+            rightTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+            topTitles: const AxisTitles(
+              sideTitles: SideTitles(showTitles: false),
+            ),
+          ),
+          borderData: FlBorderData(show: false),
+          gridData: FlGridData(
+            show: true,
+            drawVerticalLine: false,
+            getDrawingHorizontalLine: (value) => FlLine(
+              color: Colors.grey.withOpacity(0.2),
+              strokeWidth: 1,
+            ),
+          ),
+          barGroups: List.generate(fechas.length, (index) {
+            final fecha = fechas[index];
+            final count = (countsByDate[fecha] ?? 0).toDouble();
+            return BarChartGroupData(
+              x: index,
+              barRods: [
+                BarChartRodData(
+                  toY: count,
+                  color: barColor,
+                  width: 12,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(4),
+                    topRight: Radius.circular(4),
+                  ),
+                ),
+              ],
+            );
+          }),
+          maxY: maxY <= 0 ? 1 : (maxY + 1).toDouble(),
+          minY: 0,
+        ),
+      ),
+    );
+  }
 }
 
 enum _BarRodKind { income, expense }

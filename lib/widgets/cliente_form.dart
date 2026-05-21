@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
 import 'package:workia/l10n/app_localizations.dart';
+import 'package:workia/utils/validators.dart';
 
 /// Formulario reutilizable para crear o editar clientes.
 ///
@@ -77,11 +78,22 @@ class _ClienteFormState extends State<ClienteForm> {
         return;
       }
 
-      final pos = await Geolocator.getCurrentPosition();
+      Position? pos;
+      try {
+        pos = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high,
+          timeLimit: const Duration(seconds: 10),
+        );
+      } catch (_) {
+        // Fallback si el GPS tarda o falla (usa última ubicación conocida)
+        pos = await Geolocator.getLastKnownPosition();
+      }
+      if (pos == null) return;
+      final nonNullPos = pos;
       // Imprimir la ubicación actual en la terminal para depuración.
 
       setState(() {
-        _currentLocation = LatLng(pos.latitude, pos.longitude);
+        _currentLocation = LatLng(nonNullPos.latitude, nonNullPos.longitude);
       });
     } catch (e) {}
   }
@@ -102,6 +114,23 @@ class _ClienteFormState extends State<ClienteForm> {
     // Asegurarse de tener la ubicación actual antes de abrir el modal.
     await _determineCurrentPosition();
     if (!mounted) return;
+
+    // Resolver país actual (para sesgar búsquedas de direcciones).
+    String? currentCountryName;
+    String? currentIsoCountryCode;
+    if (_currentLocation != null) {
+      try {
+        final placemarks = await geocoding.placemarkFromCoordinates(
+          _currentLocation!.latitude,
+          _currentLocation!.longitude,
+        );
+        if (placemarks.isNotEmpty) {
+          currentCountryName = placemarks.first.country;
+          currentIsoCountryCode = placemarks.first.isoCountryCode;
+        }
+      } catch (_) {}
+    }
+
     // Variables locales para la selección dentro del modal.
     LatLng? modalSelected = _selectedLatLng;
     GoogleMapController? mapController;
@@ -129,9 +158,32 @@ class _ClienteFormState extends State<ClienteForm> {
                 return;
               }
               try {
-                final result = await geocoding.locationFromAddress(query);
+                // Si no se incluyó país en el texto, sesgar a país actual.
+                final qLower = query.toLowerCase();
+                final hasCountry =
+                    currentCountryName != null &&
+                    currentCountryName!.trim().isNotEmpty &&
+                    qLower.contains(currentCountryName!.toLowerCase());
+                final effectiveQuery = (!hasCountry && currentCountryName != null)
+                    ? '$query, $currentCountryName'
+                    : query;
+
+                // Locale para mejorar resultados (ej. es_HN).
+                final locale = Localizations.localeOf(context);
+                final localeIdentifier =
+                    currentIsoCountryCode != null &&
+                            currentIsoCountryCode!.trim().isNotEmpty
+                        ? '${locale.languageCode}_${currentIsoCountryCode!}'
+                        : (locale.countryCode != null
+                            ? '${locale.languageCode}_${locale.countryCode}'
+                            : locale.languageCode);
+
+                final result = await geocoding.locationFromAddress(
+                  effectiveQuery,
+                  localeIdentifier: localeIdentifier,
+                );
                 setStateModal(() {
-                  suggestions = result;
+                  suggestions = result.take(6).toList();
                 });
               } catch (_) {
                 setStateModal(() {
@@ -235,7 +287,7 @@ class _ClienteFormState extends State<ClienteForm> {
                             target:
                                 modalSelected ??
                                 _currentLocation ??
-                                const LatLng(14.0, -90.0),
+                                const LatLng(14.5, -87.2),
                             zoom: 15,
                           ),
                           onMapCreated: (ctrl) {
@@ -446,6 +498,12 @@ class _ClienteFormState extends State<ClienteForm> {
                 labelText: AppLocalizations.of(context)!.phoneLabel,
               ),
               keyboardType: TextInputType.phone,
+              validator: (value) {
+                final t = AppLocalizations.of(context)!;
+                final v = value?.trim() ?? '';
+                if (v.isEmpty) return t.requiredError;
+                return Validators.isValidPhone(v) ? null : t.invalidPhoneError;
+              },
             ),
             const SizedBox(height: 12),
             TextFormField(
@@ -454,6 +512,12 @@ class _ClienteFormState extends State<ClienteForm> {
                 labelText: AppLocalizations.of(context)!.emailLabel,
               ),
               keyboardType: TextInputType.emailAddress,
+              validator: (value) {
+                final t = AppLocalizations.of(context)!;
+                final v = value?.trim() ?? '';
+                if (v.isEmpty) return t.requiredError;
+                return Validators.isValidEmail(v) ? null : t.invalidEmailError;
+              },
             ),
             const SizedBox(height: 12),
             TextFormField(

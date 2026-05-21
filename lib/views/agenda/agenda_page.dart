@@ -185,20 +185,7 @@ class _AgendaPageState extends State<AgendaPage> {
       // Convertir las IDs de tÃ©cnicos a nombres para mostrar en
       // filtros y tarjetas.  Si no se encuentra el usuario, se
       // conserva el ID.
-      final List<String> techNames = a.tecnicosAsignados.map((techId) {
-        final user = usuariosList.firstWhere(
-          (u) => u.id == techId,
-          orElse: () => Usuario(
-            id: '',
-            authUid: '',
-            nombre: techId,
-            email: '',
-            idEmpresa: '',
-            perfilId: '',
-          ),
-        );
-        return user.nombre;
-      }).toList();
+      // (Nombres de tÃ©cnicos se resuelven en UI cuando se requieren)
       // Construir un trabajo utilizando la informaciÃ³n disponible.  Se
       // toma como base el trabajo de catÃ¡logo, pero se sobreescriben
       // campos especÃ­ficos de la asignaciÃ³n (fechas, estado, tÃ©cnicos).
@@ -215,7 +202,7 @@ class _AgendaPageState extends State<AgendaPage> {
         esCiclico: a.esCiclico,
         frecuenciaCiclico: a.frecuenciaCiclico,
         proximaFecha: a.proximaFecha,
-        empleadosAsignados: techNames,
+        empleadosAsignados: a.tecnicosAsignados,
         clientesAsignados: clientesAsignados,
         empresaId: base.empresaId.isNotEmpty ? base.empresaId : a.empresaId,
         fechaCreacion: base.fechaCreacion,
@@ -253,10 +240,11 @@ class _AgendaPageState extends State<AgendaPage> {
       // Cargar usuarios para disponer de nombres de tÃ©cnicos en filtros.
       context.read<UsuariosViewModel>().cargarUsuarios(widget.empresaId);
       // Cargar horas registradas hoy (basado en Sesiones)
-      context.read<SesionesViewModel>().loadRegisteredHoursForDate(
-        widget.empresaId,
-        DateTime.now(),
-      );
+      // Las horas registradas se cargan al seleccionar un dÃ­a en el calendario
+      // (y se filtran por las asignaciones de ese dÃ­a). Dejarlo aquÃ­ provoca
+      // que el admin vea horas "fantasma" aunque el dÃ­a seleccionado no tenga trabajos.
+      final selected = _selectedDate ?? DateTime.now();
+      await _loadRegisteredHoursForDate(selected);
 
       // Auto-finalización (opción A): solo el admin aplica la regla, y solo si hay configuración.
       /* if (widget.role == 'PERF_ADMIN') {
@@ -282,6 +270,52 @@ class _AgendaPageState extends State<AgendaPage> {
 
   String _fmtDate(DateTime d) =>
       '${d.day.toString().padLeft(2, '0')}/${d.month.toString().padLeft(2, '0')}/${d.year}';
+
+  Future<void> _loadRegisteredHoursForDate(DateTime date) async {
+    final sesionesVM = context.read<SesionesViewModel>();
+    final asignadosVM = context.read<TrabajosAsignadosViewModel>();
+    final trabajosVM = context.read<TrabajosViewModel>();
+
+    final converted = _mapAsignacionesToTrabajos(
+      asignadosVM.trabajos,
+      trabajosVM.trabajos,
+    );
+    final trabajos = widget.role == 'PERF_TEC'
+        ? converted
+              .where((t) => t.empleadosAsignados.contains(widget.userId))
+              .toList()
+        : converted;
+
+    final d = DateTime(date.year, date.month, date.day);
+    final jobsOnDate = <Trabajo>[];
+    final seen = <String>{};
+    for (final t in trabajos) {
+      final startLocal = t.fechaInicio.toLocal();
+      final endLocal = t.fechaFin.toLocal();
+      final start = DateTime(startLocal.year, startLocal.month, startLocal.day);
+      final end = DateTime(endLocal.year, endLocal.month, endLocal.day);
+      if (d.compareTo(start) >= 0 && d.compareTo(end) <= 0) {
+        if (t.id.isNotEmpty && seen.add(t.id)) {
+          jobsOnDate.add(t);
+        }
+      }
+    }
+
+    if (jobsOnDate.isEmpty) {
+      sesionesVM.clearDailyRegisteredHours();
+      return;
+    }
+
+    final ids = jobsOnDate
+        .map((j) => j.id)
+        .where((id) => id.isNotEmpty)
+        .toSet();
+    await sesionesVM.loadRegisteredHoursForDate(
+      widget.empresaId,
+      date,
+      assignmentIdsFilter: ids,
+    );
+  }
 
   Widget _buildRegisteredHoursFilterBar() {
     final t = AppLocalizations.of(context)!;
@@ -679,9 +713,8 @@ class _AgendaPageState extends State<AgendaPage> {
     final total = sesionesVM.allHistorySessions
         .where((s) {
           final startLocal = s.inicio.toLocal();
-          return (startLocal.isAfter(start) ||
-                  startLocal.isAtSameMomentAs(start)) &&
-              startLocal.isBefore(endExclusive);
+          final endLocal = (s.fin ?? nowLocal).toLocal();
+          return endLocal.isAfter(start) && startLocal.isBefore(endExclusive);
         })
         .where((s) {
           if (widget.role == 'PERF_TEC') return s.tecnicoId == widget.userId;
@@ -1230,20 +1263,21 @@ class _AgendaPageState extends State<AgendaPage> {
     // Filtrar por tÃ©cnico si el usuario tiene rol de tÃ©cnico.
     final relevant = widget.role == 'PERF_TEC'
         ? converted
-              .where((t) => t.empleadosAsignados.contains(widget.userName))
+              .where((t) => t.empleadosAsignados.contains(widget.userId))
               .toList()
         : converted;
     // Comparar contra la traducciÃ³n para soportar mÃºltiples idiomas.
     if (metric == t.jobsTodayMetric) {
       final today = DateTime.now();
-      final jobsToday = relevant
-          .where(
-            (t) =>
-                t.fechaInicio.year == today.year &&
-                t.fechaInicio.month == today.month &&
-                t.fechaInicio.day == today.day,
-          )
-          .toList();
+      final todayOnly = DateTime(today.year, today.month, today.day);
+      final jobsToday = relevant.where((t) {
+        final startLocal = t.fechaInicio.toLocal();
+        final endLocal = t.fechaFin.toLocal();
+        final start =
+            DateTime(startLocal.year, startLocal.month, startLocal.day);
+        final end = DateTime(endLocal.year, endLocal.month, endLocal.day);
+        return todayOnly.compareTo(start) >= 0 && todayOnly.compareTo(end) <= 0;
+      }).toList();
       _showJobsModal(
         title: t.jobsTodayMetric,
         jobs: jobsToday,
@@ -1368,8 +1402,10 @@ class _AgendaPageState extends State<AgendaPage> {
 
     var sessions = sesionesVM.allHistorySessions.where((s) {
       final startLocal = s.inicio.toLocal();
-      return (startLocal.isAfter(start) || startLocal.isAtSameMomentAs(start)) &&
-          startLocal.isBefore(endExclusive);
+      final endLocal = (s.fin ?? nowLocal).toLocal();
+      // Incluir cualquier sesiÃ³n que se traslape con el rango,
+      // no solo las que inician dentro del rango.
+      return endLocal.isAfter(start) && startLocal.isBefore(endExclusive);
     }).toList();
 
     if (widget.role == 'PERF_TEC') {
@@ -1396,8 +1432,9 @@ class _AgendaPageState extends State<AgendaPage> {
         .expand((m) => m.keys)
         .toSet();
 
-    var assignmentsInRange =
-        allAssignments.where((a) => assignmentIdsWithHours.contains(a.id)).toList();
+    var assignmentsInRange = allAssignments
+        .where((a) => assignmentIdsWithHours.contains(a.id))
+        .toList();
 
     if (widget.role == 'PERF_TEC') {
       assignmentsInRange = assignmentsInRange
@@ -2084,10 +2121,18 @@ class _AgendaPageState extends State<AgendaPage> {
       final fallsOnDate =
           selectedDay.compareTo(start) >= 0 && selectedDay.compareTo(end) <= 0;
       if (widget.role == 'PERF_TEC') {
-        return fallsOnDate && t.empleadosAsignados.contains(widget.userName);
+        return fallsOnDate && t.empleadosAsignados.contains(widget.userId);
       }
       return fallsOnDate;
     }).toList();
+
+    // Evitar duplicados por id (p. ej. hidratar/recargar providers).
+    final Map<String, Trabajo> jobsForDateById = {
+      for (final j in jobsForDate)
+        if (j.id.isNotEmpty) j.id: j,
+    };
+    final jobsForDateDeduped =
+        jobsForDateById.isEmpty ? jobsForDate : jobsForDateById.values.toList();
     // Guardar en el estado la lista de trabajos para la fecha seleccionada.
     // Ya no se muestra una lista debajo del calendario; se utiliza
     // internamente (p. ej., para mÃ©tricas o posibles futuras
@@ -2096,7 +2141,7 @@ class _AgendaPageState extends State<AgendaPage> {
     // Mostrar el modal y, al cerrarse, limpiar la selecciÃ³n y la lista de trabajos.
     _showJobsModal(
       title: t.jobsForDateTitle(formattedDate),
-      jobs: jobsForDate,
+      jobs: jobsForDateDeduped,
       showStatusFilter: true,
       showClientFilter: true,
 
@@ -2432,26 +2477,30 @@ class _AgendaPageState extends State<AgendaPage> {
     );
     final relevantJobs = widget.role == 'PERF_TEC'
         ? converted
-              .where((t) => t.empleadosAsignados.contains(widget.userName))
+              .where((t) => t.empleadosAsignados.contains(widget.userId))
               .toList()
         : converted;
+    final Map<String, Trabajo> relevantById = {
+      for (final j in relevantJobs)
+        if (j.id.isNotEmpty) j.id: j,
+    };
+    final relevantJobsDeduped =
+        relevantById.isEmpty ? relevantJobs : relevantById.values.toList();
     
     final selectedDate = _selectedDate ?? DateTime.now();
     final today = DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
 
-    final jobsToday = relevantJobs.where((t) {
-      final start = DateTime(
-        t.fechaInicio.year,
-        t.fechaInicio.month,
-        t.fechaInicio.day,
-      );
-      final end = DateTime(t.fechaFin.year, t.fechaFin.month, t.fechaFin.day);
+    final jobsToday = relevantJobsDeduped.where((t) {
+      final startLocal = t.fechaInicio.toLocal();
+      final endLocal = t.fechaFin.toLocal();
+      final start = DateTime(startLocal.year, startLocal.month, startLocal.day);
+      final end = DateTime(endLocal.year, endLocal.month, endLocal.day);
       return today.compareTo(start) >= 0 && today.compareTo(end) <= 0;
     }).toList();
-    final completedJobs = relevantJobs
+    final completedJobs = relevantJobsDeduped
         .where((t) => _isCompletedStatus(t.estado))
         .toList();
-    final pendingJobs = relevantJobs
+    final pendingJobs = relevantJobsDeduped
         .where(
           (t) => _isPendingStatus(t.estado) || _isInProgressStatus(t.estado),
         )
@@ -2489,16 +2538,21 @@ class _AgendaPageState extends State<AgendaPage> {
       }
     }
 
-    return GridView.count(
-      crossAxisCount: 2,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.maxWidth;
+        final crossAxisCount = w >= 900 ? 4 : (w >= 600 ? 3 : 2);
+        final aspect = w >= 900 ? 2.3 : (w >= 600 ? 2.0 : 1.5);
+        return GridView.count(
+          crossAxisCount: crossAxisCount,
       // Ajustar el aspect ratio para hacer las tarjetas mÃ¡s anchas
       // que altas, pero con suficiente altura para textos largos.
-      childAspectRatio: 1.5,
-      crossAxisSpacing: 8,
-      mainAxisSpacing: 8,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
+          childAspectRatio: aspect,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
         _MetricCard(
           title: AppLocalizations.of(context)!.jobsTodayMetric,
           value: '${jobsToday.length}',
@@ -2534,6 +2588,8 @@ class _AgendaPageState extends State<AgendaPage> {
           ),
         ),
       ],
+    );
+      },
     );
   }
 
@@ -2598,23 +2654,21 @@ class _AgendaPageState extends State<AgendaPage> {
         );
         final List<Trabajo> trabajos = widget.role == 'PERF_TEC'
             ? converted
-                  .where((t) => t.empleadosAsignados.contains(widget.userName))
+                  .where((t) => t.empleadosAsignados.contains(widget.userId))
                   .toList()
             : converted;
         final d = DateTime(date.year, date.month, date.day);
+        final seenJobIds = <String>{};
         for (final t in trabajos) {
-          final start = DateTime(
-            t.fechaInicio.year,
-            t.fechaInicio.month,
-            t.fechaInicio.day,
-          );
-          final end = DateTime(
-            t.fechaFin.year,
-            t.fechaFin.month,
-            t.fechaFin.day,
-          );
+          final startLocal = t.fechaInicio.toLocal();
+          final endLocal = t.fechaFin.toLocal();
+          final start =
+              DateTime(startLocal.year, startLocal.month, startLocal.day);
+          final end = DateTime(endLocal.year, endLocal.month, endLocal.day);
           if (d.compareTo(start) >= 0 && d.compareTo(end) <= 0) {
-            jobsOnDate.add(t);
+            if (t.id.isNotEmpty && seenJobIds.add(t.id)) {
+              jobsOnDate.add(t);
+            }
           }
         }
       }
@@ -2633,9 +2687,14 @@ class _AgendaPageState extends State<AgendaPage> {
                 // en `_showJobsForDate`.
                 final sesionesVM = context.read<SesionesViewModel>();
                 if (jobsOnDate.isNotEmpty) {
+                  final assignmentIds = jobsOnDate
+                      .map((j) => j.id)
+                      .where((id) => id.isNotEmpty)
+                      .toSet();
                   await sesionesVM.loadRegisteredHoursForDate(
                     widget.empresaId,
                     date,
+                    assignmentIdsFilter: assignmentIds,
                   );
                 } else {
                   // Si no hay trabajos ese dÃ­a, no mostrar horas registradas.
@@ -2644,6 +2703,19 @@ class _AgendaPageState extends State<AgendaPage> {
                 setState(() {
                   _selectedDate = date;
                 });
+
+                // Si sÃ­ hay trabajos pero no hay sesiones para esas asignaciones,
+                // aseguramos que el card de "Horas Registradas" muestre 0.
+                if (jobsOnDate.isNotEmpty) {
+                  final dailyHours = sesionesVM.dailyHours;
+                  final totalHoras = dailyHours.values.fold(
+                    0.0,
+                    (s, v) => s + v,
+                  );
+                  if (totalHoras <= 0) {
+                    sesionesVM.clearDailyRegisteredHours();
+                  }
+                }
 
                 // await _showSelectedDateHoursModal(date);
                 // if (!mounted) return;
@@ -2984,7 +3056,18 @@ class _MetricCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: const TextStyle(color: Colors.black54)),
+            // Mantener el tÃ­tulo en una sola lÃ­nea en pantallas pequeÃ±as.
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                title,
+                maxLines: 1,
+                softWrap: false,
+                overflow: TextOverflow.visible,
+                style: const TextStyle(color: Colors.black54),
+              ),
+            ),
             const SizedBox(height: 6),
             Text(
               value,

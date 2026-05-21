@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:workia/presentation/viewmodels/empresa_viewmodel.dart';
 import 'package:workia/presentation/viewmodels/usuarios_viewmodel.dart';
 import 'package:workia/models/empresa.dart';
@@ -12,12 +13,16 @@ import 'package:workia/l10n/app_localizations.dart';
 
 class RegisterCompanyPage extends StatefulWidget {
   final Usuario usuario;
-  final String password;
+  final String? password;
+  final String? prefillCompanyName;
+  final String? prefillCommercialName;
 
   const RegisterCompanyPage({
     super.key,
     required this.usuario,
-    required this.password,
+    this.password,
+    this.prefillCompanyName,
+    this.prefillCommercialName,
   });
 
   @override
@@ -38,10 +43,15 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
   String? _error;
   LatLng? _selectedLatLng;
   LatLng? _currentLocation;
+  bool _didComplete = false;
+  bool _isRollingBack = false;
 
   @override
   void initState() {
     super.initState();
+    // No prefilling company name from account name.
+    _nombreController.text = '';
+    _nombreComercialController.text = widget.prefillCommercialName?.trim() ?? '';
     _determineCurrentPosition();
   }
 
@@ -308,6 +318,10 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
       final empresaId = _generateCompanyId(_nombreController.text.trim());
 
       // Crear empresa con ID personalizado
+      final currentUidForAudit = FirebaseAuth.instance.currentUser?.uid ?? '';
+      final auditUserId =
+          currentUidForAudit.isNotEmpty ? currentUidForAudit : widget.usuario.id;
+
       final nuevaEmpresa = Empresa(
         id: empresaId,
         nombre: _nombreController.text.trim(),
@@ -318,8 +332,8 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
         email: _emailController.text.trim(),
         latitud: _selectedLatLng?.latitude,
         longitud: _selectedLatLng?.longitude,
-        creadoPor: 'USR_ADMIN',
-        actualizadoPor: 'USR_ADMIN',
+        creadoPor: auditUserId,
+        actualizadoPor: auditUserId,
         activo: true,
         fechaCreacion: DateTime.now(),
         fechaActualizacion: DateTime.now(),
@@ -328,13 +342,23 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
       await empresaVM.agregar(nuevaEmpresa);
 
       // Actualizar usuario con empresaId
-      final usuarioFinal = widget.usuario.copyWith(idEmpresa: empresaId);
+      final currentUid = FirebaseAuth.instance.currentUser?.uid ?? '';
+      final usuarioFinal = widget.usuario.copyWith(
+        idEmpresa: empresaId,
+        authUid: currentUid.isNotEmpty ? currentUid : widget.usuario.authUid,
+      );
 
-      // Crear usuario
-      await usuariosVM.agregar(usuarioFinal, widget.password);
+      // Crear usuario solo si aÃºn no fue creado en Auth (flujo legacy).
+      if (widget.password != null && widget.password!.isNotEmpty) {
+        await usuariosVM.agregar(usuarioFinal, widget.password!);
+      } else {
+        // Si el usuario ya existe, solo actualizamos su empresaId.
+        await usuariosVM.actualizar(usuarioFinal);
+      }
 
       if (!mounted) return;
 
+      _didComplete = true;
       context.go('/login');
       scaffoldMessenger.showSnackBar(
         SnackBar(
@@ -343,6 +367,26 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
           ),
         ),
       );
+    } on FirebaseAuthException catch (e) {
+      if (!mounted) return;
+      setState(() {
+        if (e.code == 'email-already-in-use') {
+          _error = AppLocalizations.of(context)!.emailAlreadyRegisteredError;
+        } else {
+          _error = e.message ?? e.code;
+        }
+        _isLoading = false;
+      });
+    } on StateError catch (e) {
+      if (!mounted) return;
+      setState(() {
+        if (e.message == 'email-already-in-use') {
+          _error = AppLocalizations.of(context)!.emailAlreadyRegisteredError;
+        } else {
+          _error = e.message ?? 'Error';
+        }
+        _isLoading = false;
+      });
     } catch (e) {
       if (!mounted) return;
       setState(() {
@@ -352,12 +396,40 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
     }
   }
 
+  Future<void> _rollbackAuthUserIfNeeded() async {
+    // Solo aplica al flujo donde el usuario se creÃ³ en el paso anterior (password == null).
+    if (_didComplete) return;
+    if (widget.password != null && widget.password!.isNotEmpty) return;
+    if (_isRollingBack) return;
+    _isRollingBack = true;
+    try {
+      final auth = FirebaseAuth.instance;
+      final user = auth.currentUser;
+      if (user != null) {
+        await user.delete();
+      }
+      await auth.signOut();
+    } catch (_) {
+      // Si falla (por re-auth), al menos cerramos sesiÃ³n para no dejar al usuario logueado.
+      try {
+        await FirebaseAuth.instance.signOut();
+      } catch (_) {}
+    } finally {
+      _isRollingBack = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.registerCompanyTitle),
-      ),
+    return WillPopScope(
+      onWillPop: () async {
+        await _rollbackAuthUserIfNeeded();
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppLocalizations.of(context)!.registerCompanyTitle),
+        ),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -405,6 +477,9 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
                           context,
                         )!.socialReasonLabel,
                       ),
+                      minLines: 2,
+                      maxLines: 4,
+                      keyboardType: TextInputType.multiline,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
@@ -467,6 +542,7 @@ class _RegisterCompanyPageState extends State<RegisterCompanyPage> {
             ),
           ),
         ),
+      ),
       ),
     );
   }

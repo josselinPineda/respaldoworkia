@@ -16,6 +16,13 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
 
   @override
   Future<void> agregarUsuario(Usuario usuario, String password) async {
+    final normalized = usuario.email.trim().toLowerCase();
+    final exists = _usuarios.any(
+      (u) => u.usuario.email.trim().toLowerCase() == normalized,
+    );
+    if (exists) {
+      throw StateError('email-already-in-use');
+    }
     final id = usuario.id.isNotEmpty
         ? usuario.id
         : DateTime.now().millisecondsSinceEpoch.toString();

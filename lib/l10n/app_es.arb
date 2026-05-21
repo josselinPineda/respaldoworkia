@@ -574,5 +574,6 @@
     },
     "forgotPasswordLink": "¿Olvidó su contraseña?",
     "forgotPasswordDescription": "Ingrese su correo electrónico para recibir un enlace de restablecimiento.",
-    "emailNotFoundError": "El correo no existe"
+    "emailNotFoundError": "El correo no existe",
+    "invalidPhoneError": "El teléfono no es válido"
 }

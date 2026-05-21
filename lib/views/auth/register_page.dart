@@ -32,6 +32,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmController = TextEditingController();
+  bool _hidePassword = true;
+  bool _hideConfirmPassword = true;
   String _role = 'PERF_ADMIN'; // Por defecto admin
   String _idioma = 'es'; // Por defecto español
   bool _isLoading = false;
@@ -88,36 +90,9 @@ class _RegisterPageState extends State<RegisterPage> {
     final password = _passwordController.text.trim();
     final name = _nameController.text.trim();
     final confirm = _confirmController.text.trim();
-
-    // Verificar si el correo ya existe mediante el viewmodel.
-    bool exists;
-    try {
-      exists = await _usuariosVM.emailExistente(email);
-    } on FirebaseAuthException catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _error =
-            e.message ?? AppLocalizations.of(context)!.emailVerificationError;
-        _isLoading = false;
-      });
-      return;
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _error = AppLocalizations.of(context)!.unexpectedEmailVerificationError;
-        _isLoading = false;
-      });
-      return;
-    }
-
-    if (!mounted) return;
-    if (exists) {
-      setState(() {
-        _error = AppLocalizations.of(context)!.emailAlreadyRegisteredError;
-        _isLoading = false;
-      });
-      return;
-    }
+    // Usar el idioma actual de la app (ya no se selecciona en este formulario).
+    final currentLang = Localizations.localeOf(context).languageCode;
+    _idioma = _normalizeLocale(currentLang);
 
     if (password != confirm) {
       setState(() {
@@ -177,18 +152,53 @@ class _RegisterPageState extends State<RegisterPage> {
     // Si es administrador Y NO es una creación interna (es registro público),
     // navegar a la pantalla de registro de empresa.
     if (_role == 'PERF_ADMIN' && !widget.isAdminCreation) {
-      setState(() => _isLoading = false);
-      if (!mounted) return;
-      // Ajustar el idioma de la app antes de navegar al registro de empresa.
-      context.read<LocaleProvider>().setLocale(
-        Locale(_normalizeLocale(_idioma)),
-      );
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) =>
-              RegisterCompanyPage(usuario: newUser, password: password),
-        ),
-      );
+      try {
+        await _usuariosVM.agregar(newUser, password);
+        if (!mounted) return;
+        final createdUid = FirebaseAuth.instance.currentUser?.uid ?? '';
+        final usuarioParaEmpresa =
+            createdUid.isNotEmpty
+                ? newUser.copyWith(
+                    authUid: createdUid,
+                    // En registro pÃºblico, el usuario se audita a sÃ­ mismo.
+                    creadoPor: createdUid,
+                    actualizadoPor: createdUid,
+                  )
+                : newUser;
+        setState(() => _isLoading = false);
+        context.read<LocaleProvider>().setLocale(
+          Locale(_normalizeLocale(_idioma)),
+        );
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => RegisterCompanyPage(
+              usuario: usuarioParaEmpresa,
+              password: null,
+            ),
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (!mounted) return;
+        setState(() {
+          if (e.code == 'email-already-in-use') {
+            _error = AppLocalizations.of(context)!.emailAlreadyRegisteredError;
+          } else {
+            _error =
+                e.message ?? AppLocalizations.of(context)!.userRegistrationError;
+          }
+          _isLoading = false;
+        });
+      } on StateError catch (e) {
+        if (!mounted) return;
+        setState(() {
+          if (e.message == 'email-already-in-use') {
+            _error = AppLocalizations.of(context)!.emailAlreadyRegisteredError;
+          } else {
+            _error = AppLocalizations.of(context)!.userRegistrationError;
+          }
+          _isLoading = false;
+        });
+      }
       return;
     }
 
@@ -220,8 +230,22 @@ class _RegisterPageState extends State<RegisterPage> {
       // Si hay un error con Firebase (p.ej. contraseña débil, correo inválido)
       if (!mounted) return;
       setState(() {
-        _error =
-            e.message ?? AppLocalizations.of(context)!.userRegistrationError;
+        if (e.code == 'email-already-in-use') {
+          _error = AppLocalizations.of(context)!.emailAlreadyRegisteredError;
+        } else {
+          _error =
+              e.message ?? AppLocalizations.of(context)!.userRegistrationError;
+        }
+        _isLoading = false;
+      });
+    } on StateError catch (e) {
+      if (!mounted) return;
+      setState(() {
+        if (e.message == 'email-already-in-use') {
+          _error = AppLocalizations.of(context)!.emailAlreadyRegisteredError;
+        } else {
+          _error = AppLocalizations.of(context)!.userRegistrationError;
+        }
         _isLoading = false;
       });
     } catch (e) {
@@ -307,8 +331,18 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         labelText: AppLocalizations.of(context)!.passwordLabel,
                         prefixIcon: const Icon(Icons.lock),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _hidePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() => _hidePassword = !_hidePassword);
+                          },
+                        ),
                       ),
-                      obscureText: true,
+                      obscureText: _hidePassword,
                       validator: (value) => value != null && value.length >= 3
                           ? null
                           : AppLocalizations.of(
@@ -323,8 +357,20 @@ class _RegisterPageState extends State<RegisterPage> {
                           context,
                         )!.confirmPasswordLabel,
                         prefixIcon: const Icon(Icons.lock_outline),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _hideConfirmPassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _hideConfirmPassword = !_hideConfirmPassword;
+                            });
+                          },
+                        ),
                       ),
-                      obscureText: true,
+                      obscureText: _hideConfirmPassword,
                       validator: (value) => value != null && value.length >= 3
                           ? null
                           : AppLocalizations.of(
@@ -375,32 +421,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     // Selector de empresa eliminado
                     const SizedBox(height: 12),
-                    DropdownButtonFormField<String>(
-                      initialValue: _idioma,
-                      decoration: InputDecoration(
-                        labelText: AppLocalizations.of(context)!.languageLabel,
-                        prefixIcon: const Icon(Icons.language),
-                      ),
-                      items: [
-                        DropdownMenuItem(
-                          value: 'es',
-                          child: Text(
-                            AppLocalizations.of(context)!.spanishLanguage,
-                          ),
-                        ),
-                        DropdownMenuItem(
-                          value: 'en',
-                          child: Text(
-                            AppLocalizations.of(context)!.englishLanguage,
-                          ),
-                        ),
-                      ],
-                      onChanged: (val) {
-                        if (val != null) {
-                          setState(() => _idioma = val);
-                        }
-                      },
-                    ),
                     const SizedBox(height: 16),
                     if (_error != null)
                       Text(

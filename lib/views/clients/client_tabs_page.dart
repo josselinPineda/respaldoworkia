@@ -110,6 +110,28 @@ class _ClientTabsPageState extends State<ClientTabsPage>
     }
   }
 
+  List<DropdownMenuItem<String>> _buildUniqueStatusFilterItems(
+    AppLocalizations t,
+  ) {
+    final raw = <MapEntry<String, String>>[
+      MapEntry('Todos', t.allOption),
+      MapEntry('En espera', t.jobStatusOnHold),
+      MapEntry('Iniciado', t.jobStatusStarted),
+      MapEntry('Finalizado', t.jobStatusFinished),
+      MapEntry('Cerrado', t.jobStatusClosed),
+    ];
+
+    final seenLabels = <String>{};
+    final items = <DropdownMenuItem<String>>[];
+    for (final e in raw) {
+      final labelKey = e.value.toLowerCase().trim();
+      if (seenLabels.add(labelKey)) {
+        items.add(DropdownMenuItem(value: e.key, child: Text(e.value)));
+      }
+    }
+    return items;
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
@@ -472,32 +494,7 @@ class _ClientTabsPageState extends State<ClientTabsPage>
 
                                 isDense: true,
                               ),
-                              items: [
-                                DropdownMenuItem(
-                                  value: 'Todos',
-                                  child: Text(t.allOption),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'En espera',
-                                  child: Text(t.jobStatusOnHold),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Iniciado',
-                                  child: Text(t.jobStatusStarted),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Finalizado',
-                                  child: Text(t.jobStatusFinished),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Cerrado',
-                                  child: Text(t.jobStatusClosed),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'Cerrado',
-                                  child: Text(t.jobStatusClosed),
-                                ),
-                              ],
+                              items: _buildUniqueStatusFilterItems(t),
                               onChanged: (val) {
                                 if (val != null) {
                                   setState(() {

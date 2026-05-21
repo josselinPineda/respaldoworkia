@@ -45,6 +45,7 @@ class UsuarioRepositoryFirestore implements UsuarioRepository {
     // Preparar el mapa de datos para Firestore.  Tomamos el mapa del
     // modelo y agregamos timestamps y el uid de autenticación.  No se
     // almacena la contraseña en Firestore.
+    // Generar un código legible (similar al ID histórico `USR_NOMBRE_timestamp`).
     final data = usuario.copyWith(authUid: uid).toJson();
     // Generar un identificador personalizado para el usuario basado en su
     // nombre.  Si ya se proporcionó un id se utiliza ese valor.  Esto
@@ -53,7 +54,7 @@ class UsuarioRepositoryFirestore implements UsuarioRepository {
     // Crear un identificador lógico basado en el nombre.  Eliminamos
     // espacios y los reemplazamos con guiones bajos para generar un
     // ID legible.  Si ya se proporcionó un ID se utiliza tal cual.
-    final String nameForId = usuario.nombre.replaceAll(RegExp(r'\s+'), '_');
+    final String nameForId = usuario.nombre.replaceAll(RegExp(r'\\s+'), '_');
     final String id = usuario.id.isNotEmpty
         ? usuario.id
         : 'USR_${nameForId.toUpperCase()}_${DateTime.now().millisecondsSinceEpoch}';
@@ -68,7 +69,7 @@ class UsuarioRepositoryFirestore implements UsuarioRepository {
 
   @override
   Future<void> actualizarUsuario(Usuario usuario) async {
-    if (usuario.id.isEmpty) return;
+
     final data = usuario.toJson();
     if (usuario.fechaCreacion != null) {
       data['fechaCreacion'] = Timestamp.fromDate(usuario.fechaCreacion!);
@@ -77,7 +78,44 @@ class UsuarioRepositoryFirestore implements UsuarioRepository {
       usuario.fechaActualizacion ?? DateTime.now(),
     );
     // No actualizamos la contraseña aquí
-    await _coleccion.doc(usuario.id).update(data);
+    // Intento principal: actualizar por ID de documento.
+    if (usuario.id.isNotEmpty) {
+      try {
+        await _coleccion.doc(usuario.id).set(data, SetOptions(merge: true));
+        return;
+      } catch (_) {
+        // Si no existe el doc con ese ID, hacemos fallback.
+      }
+    }
+
+    // Fallback 1: buscar por authUid.
+    if (usuario.authUid.isNotEmpty) {
+      final snap = await _coleccion
+          .where('authUid', isEqualTo: usuario.authUid)
+          .limit(1)
+          .get();
+      if (snap.docs.isNotEmpty) {
+        await _coleccion
+            .doc(snap.docs.first.id)
+            .set(data, SetOptions(merge: true));
+        return;
+      }
+    }
+
+    // Fallback 2: buscar por email.
+    final email = usuario.email.trim();
+    if (email.isNotEmpty) {
+      final snap =
+          await _coleccion.where('email', isEqualTo: email).limit(1).get();
+      if (snap.docs.isNotEmpty) {
+        await _coleccion
+            .doc(snap.docs.first.id)
+            .set(data, SetOptions(merge: true));
+        return;
+      }
+    }
+
+    throw StateError('usuario-not-found');
   }
 
   @override

@@ -93,7 +93,48 @@ class _LoginPageState extends State<LoginPage> {
 
       final role = user.perfilId;
       final userName = user.nombre;
-      final empresaId = user.idEmpresa;
+      String empresaId = user.idEmpresa;
+
+      // Si por alguna razÃ³n el usuario no tiene empresaId asignado (casos
+      // antiguos o registro interrumpido), intentar inferirlo por email
+      // buscando una empresa cuyo email coincida con el del usuario.
+      if (empresaId.trim().isEmpty) {
+        try {
+          final empresas = await context.read<EmpresaViewModel>().obtenerTodas();
+          final normalizedEmail = user.email.trim().toLowerCase();
+          try {
+            // Prioridad 1: empresa creada por este usuario (registro admin).
+            final matchByCreator = empresas.firstWhere(
+              (e) =>
+                  e.creadoPor.isNotEmpty &&
+                  (e.creadoPor == user.authUid || e.creadoPor == user.id),
+            );
+            empresaId = matchByCreator.id;
+          } catch (_) {
+            try {
+              // Prioridad 2: match por email.
+              final matchByEmail = empresas.firstWhere(
+                (e) => e.email.trim().toLowerCase() == normalizedEmail,
+              );
+              empresaId = matchByEmail.id;
+            } catch (_) {
+              // Si no hay match por email y solo existe 1 empresa activa,
+              // vincularla automÃ¡ticamente (caso de primer registro).
+              if (empresas.length == 1) {
+                empresaId = empresas.first.id;
+              }
+            }
+          }
+
+          if (empresaId.trim().isNotEmpty) {
+            // Persistir la correcciÃ³n para futuros logins.
+            // ignore: unawaited_futures
+            context.read<UsuariosViewModel>().actualizar(
+                  user.copyWith(idEmpresa: empresaId),
+                );
+          }
+        } catch (_) {}
+      }
 
       // Ajustar el idioma de la app segun el valor guardado en Firebase.
       final localeCode = _normalizeLocale(user.idioma);

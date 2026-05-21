@@ -37,8 +37,6 @@ class _UsersPageState extends State<UsersPage> {
   final TextEditingController _searchController = TextEditingController();
   // Variables para filtros
   bool _filtrosVisibles = false;
-  // Mostrar únicamente usuarios activos por defecto
-  String _estadoFiltro = 'Activos';
   String _rolFiltro = 'Todos';
   // Almacena la lista filtrada por búsqueda.  Se combinará con los filtros de estado y rol en build().
   // List<Usuario> _filteredUsers = []; // Removed: unused
@@ -48,57 +46,27 @@ class _UsersPageState extends State<UsersPage> {
   /// y desaparición.  Incluye filtros para estado (activo/inactivo) y
   /// rol/perfil.  La primera opción de cada lista debe ser 'Todos'.
   Widget _buildFilterPanel() {
-    return Row(
-      children: [
-        Expanded(
-          child: DropdownSearch<String>(
-            items: (String filter, LoadProps? loadProps) => const [
-              'Todos',
-              'Activos',
-              'Inactivos',
-            ],
-            selectedItem: _estadoFiltro == 'Todos' ? null : _estadoFiltro,
-            decoratorProps: DropDownDecoratorProps(
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.statusLabel,
-                border: const OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-            popupProps: const PopupProps.menu(showSearchBox: true),
-            onChanged: (String? value) {
-              setState(() {
-                _estadoFiltro = value ?? 'Todos';
-              });
-            },
-          ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: DropdownSearch<String>(
-            items: (String filter, LoadProps? loadProps) => const [
-              'Todos',
-              'PERF_ADMIN',
-              'PERF_FIN',
-              'PERF_TEC',
-            ],
-            selectedItem: _rolFiltro == 'Todos' ? null : _rolFiltro,
-            decoratorProps: DropDownDecoratorProps(
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.roleLabel,
-                border: const OutlineInputBorder(),
-                isDense: true,
-              ),
-            ),
-            popupProps: const PopupProps.menu(showSearchBox: true),
-            onChanged: (String? value) {
-              setState(() {
-                _rolFiltro = value ?? 'Todos';
-              });
-            },
-          ),
-        ),
+    return DropdownSearch<String>(
+      items: (String filter, LoadProps? loadProps) => const [
+        'Todos',
+        'PERF_ADMIN',
+        'PERF_FIN',
+        'PERF_TEC',
       ],
+      selectedItem: _rolFiltro == 'Todos' ? null : _rolFiltro,
+      decoratorProps: DropDownDecoratorProps(
+        decoration: InputDecoration(
+          labelText: AppLocalizations.of(context)!.roleLabel,
+          border: const OutlineInputBorder(),
+          isDense: true,
+        ),
+      ),
+      popupProps: const PopupProps.menu(showSearchBox: true),
+      onChanged: (String? value) {
+        setState(() {
+          _rolFiltro = value ?? 'Todos';
+        });
+      },
     );
   }
 
@@ -261,6 +229,7 @@ class _UsersPageState extends State<UsersPage> {
               },
               child: _filtrosVisibles
                   ? Padding(
+                      key: const ValueKey('user-filters'),
                       padding: const EdgeInsets.only(top: 8.0, bottom: 12.0),
                       child: _buildFilterPanel(),
                     )
@@ -275,15 +244,8 @@ class _UsersPageState extends State<UsersPage> {
                   // Use the calculated displayList
                   var list = List<Usuario>.from(displayList);
 
-                  // Aplicar filtro por estado
-                  if (_estadoFiltro != 'Todos') {
-                    list = list.where((u) {
-                      if (_estadoFiltro == 'Activos' && !u.activo) return false;
-                      if (_estadoFiltro == 'Inactivos' && u.activo)
-                        return false;
-                      return true;
-                    }).toList();
-                  }
+                  // Mostrar únicamente usuarios activos
+                  list = list.where((u) => u.activo).toList();
                   // Aplicar filtro por rol
                   if (_rolFiltro != 'Todos') {
                     list = list.where((u) => u.perfilId == _rolFiltro).toList();

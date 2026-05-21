@@ -22,6 +22,10 @@ service cloud.firestore {
       allow read, write: if isAuthenticated();
     }
 
+    match /empresas/{empresaId} {
+      allow read, write: if isAuthenticated();
+    }
+
     // Reglas para Clientes
     match /clientes/{clienteId} {
       allow read: if isAuthenticated();

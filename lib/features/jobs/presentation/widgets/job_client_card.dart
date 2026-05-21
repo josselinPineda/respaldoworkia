@@ -7,6 +7,7 @@ import 'package:workia/models/trabajo_asignado.dart';
 import 'package:workia/features/jobs/presentation/viewmodels/job_detail_viewmodel.dart';
 import 'package:workia/features/jobs/presentation/widgets/assign_client_sheet.dart';
 import 'package:workia/features/jobs/presentation/widgets/client_info_modal.dart';
+import 'package:workia/presentation/viewmodels/sesiones_viewmodel.dart';
 import 'package:workia/utils/ui_utils.dart';
 
 /// Tarjeta que muestra un cliente asignado a un trabajo.
@@ -298,13 +299,31 @@ class _TechnicianStatusAction extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     final vm = context.watch<JobDetailViewModel>();
+    final sesionesVM = context.watch<SesionesViewModel>();
 
     // Verificar si el usuario actual está asignado
     final isAssigned = vm.isCurrentUserAssignedTo(assignment);
     if (!isAssigned) return const SizedBox.shrink();
 
-    final isSessionActive = vm.isSessionActiveForCurrentUser;
+    // Precargar estado de sesión para evitar que tras re-login se muestre "Iniciar"
+    // momentáneamente antes de conocer el estado real.
+    if (!vm.hasHydratedSessionForAssignment(assignment.id) &&
+        !vm.isHydratingSessionForAssignment(assignment.id)) {
+      Future.microtask(() => vm.ensureSessionHydratedForAssignment(assignment.id));
+    }
+
+    final isSessionActive = sesionesVM.isSessionActiveFor(vm.currentUserId);
+    final isHydrating =
+        vm.isHydratingSessionForAssignment(assignment.id) && !isSessionActive;
     final normalized = assignment.estado.replaceAll('_', ' ').toLowerCase();
+
+    if (isHydrating) {
+      return const SizedBox(
+        width: 36,
+        height: 36,
+        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      );
+    }
 
     // Si no hay sesión activa y no está iniciado, mostrar badge
     if (normalized != 'iniciado' && !isSessionActive) {

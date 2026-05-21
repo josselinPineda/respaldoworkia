@@ -17,7 +17,6 @@ import 'package:workia/presentation/viewmodels/sesiones_viewmodel.dart';
 
 import 'package:workia/models/cliente.dart';
 import 'package:workia/widgets/cliente_mini_map_section.dart';
-import 'package:workia/views/jobs/job_form_page.dart';
 
 import 'package:workia/l10n/app_localizations.dart';
 
@@ -155,30 +154,7 @@ class _JobDetailPageState extends State<JobDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(job.titulo),
-        actions: [
-          // Botón de edición visible solo para roles distintos de técnico.
-          if (widget.role != 'PERF_TEC')
-            IconButton(
-              icon: const Icon(Icons.edit),
-              tooltip: t.editJobTooltip,
-              onPressed: () async {
-                // Recargamos los trabajos asignados antes de navegar al formulario.
-                final asignadosVM = context.read<TrabajosAsignadosViewModel>();
-                await asignadosVM.cargarTrabajosAsignados(widget.job.empresaId);
-                final trabajosVM = context.read<TrabajosViewModel>();
-                await Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => JobFormPage(job: job, role: widget.role),
-                  ),
-                );
-                if (!mounted) return;
-                // Después de volver del formulario, recargamos la lista de trabajos
-                // para reflejar cualquier cambio realizado.
-                await trabajosVM.cargarTrabajos(widget.job.empresaId);
-                setState(() {});
-              },
-            ),
-        ],
+        actions: const [],
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -1706,6 +1682,8 @@ class JobClientCard extends StatelessWidget {
 
   static final Map<String, Timer> _autoFinishTimers = {};
   static final Map<String, Timer> _autoAdvanceTimers = {};
+  static final Map<String, Future<void>> _sessionHydrateFutures = {};
+  static final Set<String> _sessionHydratedKeys = {};
 
   const JobClientCard({
     super.key,
@@ -2427,8 +2405,20 @@ class JobClientCard extends StatelessWidget {
     final sesionesVM = context.watch<SesionesViewModel>();
     final userProvider = context.read<UserSessionProvider>();
     final userId = userProvider.userId;
+    final hydrateKey = '$userId:${assignment.id}';
+    final hydrateFuture = JobClientCard._sessionHydrateFutures.putIfAbsent(
+      hydrateKey,
+      () => sesionesVM
+          .hydrateActiveSessionForAssignment(assignment.id, userId)
+          .whenComplete(() {
+            JobClientCard._sessionHydratedKeys.add(hydrateKey);
+          }),
+    );
     // Verificar si hay sesión activa para este usuario
-    final isSessionActive = sesionesVM.isSessionActiveFor(userId);
+    final activeSession = sesionesVM.getActiveSessionFor(userId);
+    final isSessionActive =
+        activeSession != null &&
+        activeSession.trabajoAsignadoId == assignment.id;
     // Verificar si el usuario está asignado a este trabajo
     final isAssigned = assignment.tecnicosAsignados.contains(userId);
     if (!isAssigned) return const SizedBox.shrink();
@@ -2461,6 +2451,18 @@ class JobClientCard extends StatelessWidget {
       return _buildStatusBadge(context, 'FINALIZADO');
     }
 
+    // Si el trabajo estÃ¡ INICIADO, al re-login puede tardar en hidratar la sesiÃ³n activa.
+    // Mientras tanto, evitamos mostrar "Iniciar" otra vez.
+    if (normalized == 'iniciado' &&
+        !isSessionActive &&
+        !JobClientCard._sessionHydratedKeys.contains(hydrateKey)) {
+      return const SizedBox(
+        width: 36,
+        height: 36,
+        child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
+      );
+    }
+
     if (isSessionActive) {
       _ensureAutoFinishScheduled(
         assignment: assignment,
@@ -2471,7 +2473,7 @@ class JobClientCard extends StatelessWidget {
       return ElevatedButton.icon(
         onPressed: () async {
           final session = sesionesVM.getActiveSessionFor(userId);
-          if (session != null) {
+          if (session != null && session.trabajoAsignadoId == assignment.id) {
             // OPTIMISTIC UPDATE: Localmente marcar como finalizado para que la agenda y UI reaccionen al instante
             context.read<TrabajosAsignadosViewModel>().actualizarEstadoLocal(assignment.id, 'FINALIZADO', tecnicoIdConHoras: userId);
 

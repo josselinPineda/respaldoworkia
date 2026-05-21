@@ -3,6 +3,7 @@ import 'package:workia/l10n/app_localizations.dart';
 import '../models/usuario.dart';
 import 'package:provider/provider.dart';
 import 'package:workia/presentation/providers/user_session_provider.dart';
+import 'package:workia/utils/validators.dart';
 
 /// Formulario reutilizable para editar usuarios existentes.
 ///
@@ -26,7 +27,6 @@ class _UsuarioFormState extends State<UsuarioForm> {
   late TextEditingController _emailController;
   late TextEditingController _phoneController;
   late String _role;
-  late String _idioma;
 
   @override
   void initState() {
@@ -36,7 +36,6 @@ class _UsuarioFormState extends State<UsuarioForm> {
     _emailController = TextEditingController(text: u.email);
     _phoneController = TextEditingController(text: u.telefono);
     _role = u.perfilId;
-    _idioma = u.idioma;
   }
 
   @override
@@ -48,6 +47,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
   }
 
   void _handleSave() {
+    if (!(_formKey.currentState?.validate() ?? false)) return;
     final currentUserId = context.read<UserSessionProvider>().userId;
 
     final updated = widget.initial.copyWith(
@@ -55,7 +55,6 @@ class _UsuarioFormState extends State<UsuarioForm> {
       email: _emailController.text.trim(),
       telefono: _phoneController.text.trim(),
       perfilId: _role,
-      idioma: _idioma,
       actualizadoPor: currentUserId,
       fechaActualizacion: DateTime.now(),
     );
@@ -81,15 +80,22 @@ class _UsuarioFormState extends State<UsuarioForm> {
             controller: _emailController,
             decoration: InputDecoration(labelText: t.emailLabel),
             keyboardType: TextInputType.emailAddress,
-            validator: (value) => value != null && value.contains('@')
-                ? null
-                : t.invalidEmailError,
+            validator: (value) {
+              final v = value?.trim() ?? '';
+              if (v.isEmpty) return t.requiredError;
+              return Validators.isValidEmail(v) ? null : t.invalidEmailError;
+            },
           ),
           const SizedBox(height: 12),
           TextFormField(
             controller: _phoneController,
             decoration: InputDecoration(labelText: t.phoneLabel),
             keyboardType: TextInputType.phone,
+            validator: (value) {
+              final v = value?.trim() ?? '';
+              if (v.isEmpty) return t.requiredError;
+              return Validators.isValidPhone(v) ? null : t.invalidPhoneError;
+            },
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<String>(
@@ -103,20 +109,6 @@ class _UsuarioFormState extends State<UsuarioForm> {
             onChanged: (val) {
               if (val != null) {
                 setState(() => _role = val);
-              }
-            },
-          ),
-          const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            value: _idioma,
-            decoration: InputDecoration(labelText: t.languageLabel),
-            items: [
-              DropdownMenuItem(value: 'es', child: Text(t.spanishLanguage)),
-              DropdownMenuItem(value: 'en', child: Text(t.englishLanguage)),
-            ],
-            onChanged: (val) {
-              if (val != null) {
-                setState(() => _idioma = val);
               }
             },
           ),

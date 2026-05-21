@@ -5,14 +5,6 @@ allprojects {
     }
 }
 
-// Algunos plugins aún compilan con `-source 8 -target 8`, lo cual genera warnings
-// en JDKs modernos. Suprimimos únicamente ese warning de opciones obsoletas.
-subprojects {
-    tasks.withType<org.gradle.api.tasks.compile.JavaCompile>().configureEach {
-        options.compilerArgs.add("-Xlint:-options")
-    }
-}
-
 val newBuildDir: Directory =
     rootProject.layout.buildDirectory
         .dir("../../build")

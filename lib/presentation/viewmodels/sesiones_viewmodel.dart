@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:workia/domain/repositories/sesion_trabajo_repository.dart';
 import 'package:workia/models/sesion_trabajo.dart';
@@ -23,6 +25,13 @@ class SesionesViewModel extends ChangeNotifier {
   // Key: sesionId
   final Map<String, Timer> _autoFinishTimers = {};
 
+  // Timer para actualizar "Horas registradas" en vivo (solo para el dÃ­a de hoy).
+  Timer? _liveDailyHoursTimer;
+  DateTime? _liveDailyHoursDate;
+  String? _liveDailyHoursEmpresaId;
+  Set<String>? _liveDailyHoursAssignmentIdsFilter;
+  bool _liveDailyHoursTickInFlight = false;
+
   // Mapa para horas diarias por técnico
   Map<String, double> _dailyHours = {};
   Map<String, double> get dailyHours => _dailyHours;
@@ -41,6 +50,29 @@ class SesionesViewModel extends ChangeNotifier {
 
   SesionTrabajo? getActiveSessionFor(String tecnicoId) {
     return _activeSessions[tecnicoId];
+  }
+
+  /// Intenta hidratar la sesiÃ³n activa de un tÃ©cnico para una asignaciÃ³n.
+  ///
+  /// Esto se usa cuando la UI necesita saber si el trabajo ya estÃ¡ iniciado
+  /// (por ejemplo tras re-login) sin requerir `init()` (stream) por asignaciÃ³n.
+  Future<void> hydrateActiveSessionForAssignment(
+    String trabajoAsignadoId,
+    String tecnicoId,
+  ) async {
+    try {
+      final session = await _repository.obtenerSesionActiva(
+        trabajoAsignadoId,
+        tecnicoId,
+      );
+      if (session == null) return;
+
+      // Un tÃ©cnico solo deberÃ­a tener 1 sesiÃ³n activa; guardamos la encontrada.
+      _activeSessions[tecnicoId] = session;
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error hydrating active session: $e');
+    }
   }
 
   StreamSubscription? _subscription;
@@ -72,6 +104,7 @@ class SesionesViewModel extends ChangeNotifier {
       t.cancel();
     }
     _autoFinishTimers.clear();
+    _liveDailyHoursTimer?.cancel();
     super.dispose();
   }
 
@@ -83,6 +116,86 @@ class SesionesViewModel extends ChangeNotifier {
         _activeSessions[s.tecnicoId] = s;
       }
     }
+  }
+
+  void _stopLiveDailyHours() {
+    _liveDailyHoursTimer?.cancel();
+    _liveDailyHoursTimer = null;
+    _liveDailyHoursDate = null;
+    _liveDailyHoursEmpresaId = null;
+    _liveDailyHoursAssignmentIdsFilter = null;
+    _liveDailyHoursTickInFlight = false;
+  }
+
+  void _recomputeDailyHoursFromLoadedSessions(DateTime date) {
+    final now = DateTime.now();
+    final isToday = DateUtils.isSameDay(date, now);
+    final dateStart = DateTime(date.year, date.month, date.day);
+    final dateEnd = dateStart.add(const Duration(days: 1));
+
+    final Map<String, double> hoursByTech = {};
+    for (final s in _dailySessions) {
+      final sessionStart = s.inicio.toLocal();
+      final sessionEnd = (s.fin ?? (isToday ? now : dateEnd)).toLocal();
+
+      final overlapStart =
+          sessionStart.isBefore(dateStart) ? dateStart : sessionStart;
+      final overlapEnd = sessionEnd.isAfter(dateEnd) ? dateEnd : sessionEnd;
+
+      double horas = 0.0;
+      if (overlapEnd.isAfter(overlapStart)) {
+        final duration = overlapEnd.difference(overlapStart);
+        horas = double.parse((duration.inMinutes / 60.0).toStringAsFixed(2));
+      }
+
+      hoursByTech.update(
+        s.tecnicoId,
+        (val) => val + horas,
+        ifAbsent: () => horas,
+      );
+    }
+    _dailyHours = hoursByTech;
+  }
+
+  void _maybeStartLiveDailyHours(DateTime date) {
+    final now = DateTime.now();
+    if (!DateUtils.isSameDay(date, now)) {
+      _stopLiveDailyHours();
+      return;
+    }
+
+    if (_liveDailyHoursTimer != null &&
+        _liveDailyHoursDate != null &&
+        DateUtils.isSameDay(_liveDailyHoursDate!, date)) {
+      return;
+    }
+
+    _stopLiveDailyHours();
+    _liveDailyHoursDate = date;
+
+    _liveDailyHoursTimer = Timer.periodic(const Duration(seconds: 15), (_) async {
+      if (_liveDailyHoursDate == null) return;
+      if (_liveDailyHoursTickInFlight) return;
+      if (_liveDailyHoursEmpresaId == null) return;
+
+      _liveDailyHoursTickInFlight = true;
+      try {
+        final sessions = await _repository.obtenerSesionesPorEmpresaYFecha(
+          _liveDailyHoursEmpresaId!,
+          _liveDailyHoursDate!,
+        );
+        final filter = _liveDailyHoursAssignmentIdsFilter;
+        _dailySessions = filter == null
+            ? sessions
+            : sessions.where((s) => filter.contains(s.trabajoAsignadoId)).toList();
+        _recomputeDailyHoursFromLoadedSessions(_liveDailyHoursDate!);
+        notifyListeners();
+      } catch (e) {
+        debugPrint('Live daily hours tick error: $e');
+      } finally {
+        _liveDailyHoursTickInFlight = false;
+      }
+    });
   }
 
   Future<void> iniciarSesion(
@@ -130,10 +243,27 @@ class SesionesViewModel extends ChangeNotifier {
     // Optimistic Update: Actualizar sesión localmente
     final index = _sesiones.indexWhere((s) => s.id == sesionId);
     SesionTrabajo? backupSession;
+    String? backupActiveTechId;
+    SesionTrabajo? backupActiveSession;
+
+    // Si esta sesiÃ³n solo existe en el mapa de activas (por ejemplo tras hydrate),
+    // cerrarla localmente para que la UI no se quede "pegada".
+    try {
+      final entry = _activeSessions.entries.firstWhere(
+        (e) => e.value.id == sesionId,
+      );
+      backupActiveTechId = entry.key;
+      backupActiveSession = entry.value;
+      _activeSessions[entry.key] = entry.value.copyWith(fin: DateTime.now());
+    } catch (_) {}
 
     if (index != -1) {
       backupSession = _sesiones[index];
       _sesiones[index] = _sesiones[index].copyWith(fin: DateTime.now());
+      _updateActiveSessions();
+      notifyListeners();
+    } else {
+      // Recalcular sesiones activas usando el estado actual.
       _updateActiveSessions();
       notifyListeners();
     }
@@ -146,9 +276,12 @@ class SesionesViewModel extends ChangeNotifier {
       // Revertir
       if (index != -1 && backupSession != null) {
         _sesiones[index] = backupSession;
-        _updateActiveSessions();
-        notifyListeners();
       }
+      if (backupActiveTechId != null && backupActiveSession != null) {
+        _activeSessions[backupActiveTechId] = backupActiveSession;
+      }
+      _updateActiveSessions();
+      notifyListeners();
       rethrow;
     }
   }
@@ -156,57 +289,30 @@ class SesionesViewModel extends ChangeNotifier {
   Future<void> loadRegisteredHoursForDate(
     String empresaId,
     DateTime date,
+    {Set<String>? assignmentIdsFilter}
   ) async {
     try {
       final sessions = await _repository.obtenerSesionesPorEmpresaYFecha(
         empresaId,
         date,
       );
-      _dailySessions = sessions;
-
-      final Map<String, double> hoursByTech = {};
-      final now = DateTime.now();
-      // Check if the requested date is "today" (same year, month, day)
-      final isToday =
-          date.year == now.year &&
-          date.month == now.month &&
-          date.day == now.day;
-
-      for (var s in sessions) {
-        double horas = s.horas;
-        if (s.fin == null) {
-          // If the session is still open...
-          if (isToday) {
-            // If viewing today, calc duration until now
-            final duration = now.difference(s.inicio);
-            horas = double.parse(
-              (duration.inMinutes / 60.0).toStringAsFixed(2),
-            );
-          } else {
-            // If viewing a past date and it's still open,
-            // it means it's a long running session or error.
-            // We'll show duration until now for consistency,
-            // or maybe we should cap it?
-            // Let's stick to "Current Duration" to be safe.
-            final duration = now.difference(s.inicio);
-            horas = double.parse(
-              (duration.inMinutes / 60.0).toStringAsFixed(2),
-            );
-          }
-        }
-        hoursByTech.update(
-          s.tecnicoId,
-          (val) => val + horas,
-          ifAbsent: () => horas,
-        );
-      }
-      _dailyHours = hoursByTech;
+      final filteredSessions = assignmentIdsFilter == null
+          ? sessions
+          : sessions
+              .where((s) => assignmentIdsFilter.contains(s.trabajoAsignadoId))
+              .toList();
+      _dailySessions = filteredSessions;
+      _recomputeDailyHoursFromLoadedSessions(date);
       notifyListeners();
+      _liveDailyHoursEmpresaId = empresaId;
+      _liveDailyHoursAssignmentIdsFilter = assignmentIdsFilter;
+      _maybeStartLiveDailyHours(date);
     } catch (e) {
       debugPrint('Error loading registered hours: $e');
       // Set empty state on error to avoid stale data
       _dailySessions = [];
       _dailyHours = {};
+      _stopLiveDailyHours();
     }
   }
 
@@ -233,6 +339,7 @@ class SesionesViewModel extends ChangeNotifier {
   void clearDailyRegisteredHours() {
     _dailySessions = [];
     _dailyHours = {};
+    _stopLiveDailyHours();
     notifyListeners();
   }
 }

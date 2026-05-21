@@ -1,149 +1,45 @@
-# -----------------------------------------------------------------
-#  Flutter / Dart
-# -----------------------------------------------------------------
-.dart_tool/
-.packages
-.pub/
-.pub-cache/
-build/
-.flutter-plugins
-.flutter-plugins-dependencies
-.metadata
-
-# -----------------------------------------------------------------
-#  Android
-# -----------------------------------------------------------------
-android/app/build/
-android/app/.gradle/
-android/.gradle/
-android/.kotlin/
-android/local.properties
-android/captures/
-android/gradlew
-android/gradlew.bat
-android/*.iml
-android/.externalNativeBuild
-android/.cxx/
-local.properties
-
-# -----------------------------------------------------------------
-#  iOS
-# -----------------------------------------------------------------
-ios/Pods/
-ios/Podfile.lock
-ios/.symlinks/
-ios/Flutter/Generated.xcconfig
-ios/Flutter/Flutter.framework
-ios/Flutter/Flutter.podspec
-ios/Flutter/App.framework
-ios/Flutter/flutter_export_environment.sh
-ios/Flutter/ephemeral/
-ios/Runner.xcworkspace/
-ios/Runner/GeneratedPluginRegistrant.*
-
-# -----------------------------------------------------------------
-#  macOS / Windows / Linux
-# -----------------------------------------------------------------
-macos/Pods/
-macos/.symlinks/
-macos/Flutter/ephemeral/
-linux/.symlinks/
-windows/.symlinks/
-
-# -----------------------------------------------------------------
-#  Node.js / Genkit (backend)
-# -----------------------------------------------------------------
-node_modules/
-genkit_functions/node_modules/
-backend_genkit/node_modules/
-.genkit/
-backend_genkit/.genkit/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
+# Miscellaneous
+*.class
 *.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
 
-# -----------------------------------------------------------------
-#  Variables de entorno y claves API
-# -----------------------------------------------------------------
-.env
-.env.local
-.env.*.local
-backend_genkit/.env
-genkit_functions/.env
-*.key
-*.pem
-google-services.json
-GoogleService-Info.plist
-
-# -----------------------------------------------------------------
-#  IDE / Editor
-# -----------------------------------------------------------------
-.idea/
-.vscode/
+# IntelliJ related
 *.iml
 *.ipr
 *.iws
-.project
-.classpath
-.settings/
-*.sublime-project
-*.sublime-workspace
-*.swp
-*.swo
-*~
+.idea/
 
-# -----------------------------------------------------------------
-#  Sistema operativo
-# -----------------------------------------------------------------
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-Desktop.ini
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
 
-# -----------------------------------------------------------------
-#  Archivos temporales / compilados
-# -----------------------------------------------------------------
-*.class
-*.pyc
-*.pyo
-*.pyd
-*.so
-*.dylib
-*.dll
-*.exe
-*.out
-*.log
-*.tmp
-*.temp
-*.cache
-*.bak
-*.orig
-*.rej
-*.swp
-*.swo
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
 
-# -----------------------------------------------------------------
-#  Bases de datos
-# -----------------------------------------------------------------
-*.sqlite
-*.sqlite3
-*.db
-*.db-journal
-*.db-shm
-*.db-wal
+# Symbolication related
+app.*.symbols
 
-# -----------------------------------------------------------------
-#  Archivos de salida (binarios)
-# -----------------------------------------------------------------
-*.apk
-*.aab
-*.ipa
-*.app
-*.dSYM.zip
-*.dSYM
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release

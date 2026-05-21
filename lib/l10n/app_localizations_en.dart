@@ -1458,4 +1458,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emailNotFoundError => 'The email doesn\'t exist';
+
+  @override
+  String get invalidPhoneError => 'The phone number is not valid';
 }

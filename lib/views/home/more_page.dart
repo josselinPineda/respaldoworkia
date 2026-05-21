@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:workia/views/expenses/expenses_page.dart';
 import 'package:workia/views/expenses/expense_types_view.dart';
@@ -6,6 +7,7 @@ import 'package:workia/views/reports/balance_page.dart';
 import 'package:workia/views/settings/config_page.dart';
 import 'package:workia/l10n/app_localizations.dart';
 import 'package:workia/views/employees/users_page.dart';
+import 'package:workia/presentation/providers/user_session_provider.dart';
 
 /// A simple page that lists links to additional sections of the app
 /// not represented directly in the bottom navigation.  Each list
@@ -15,6 +17,7 @@ class MorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final session = context.watch<UserSessionProvider>();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -29,11 +32,11 @@ class MorePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => const ExpensesPage(
-                      userName: '',
-                      role: '',
-                      userId: '',
-                      empresaId: '',
+                    builder: (_) => ExpensesPage(
+                      userName: session.userName,
+                      role: session.userRole,
+                      userId: session.userId,
+                      empresaId: session.empresaId,
                     ),
                   ),
                 );
@@ -46,11 +49,11 @@ class MorePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => const BalancePage(
-                      userName: '',
-                      role: '',
-                      userId: '',
-                      empresaId: '',
+                    builder: (_) => BalancePage(
+                      userName: session.userName,
+                      role: session.userRole,
+                      userId: session.userId,
+                      empresaId: session.empresaId,
                     ),
                   ),
                 );
@@ -64,11 +67,11 @@ class MorePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => const ConfigPage(
-                      userName: '',
-                      role: '',
-                      userId: '',
-                      empresaId: '',
+                    builder: (_) => ConfigPage(
+                      userName: session.userName,
+                      role: session.userRole,
+                      userId: session.userId,
+                      empresaId: session.empresaId,
                     ),
                   ),
                 );
@@ -81,11 +84,11 @@ class MorePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => const UsersPage(
-                      userName: '',
-                      role: '',
-                      userId: '',
-                      empresaId: '',
+                    builder: (_) => UsersPage(
+                      userName: session.userName,
+                      role: session.userRole,
+                      userId: session.userId,
+                      empresaId: session.empresaId,
                     ),
                   ),
                 );
@@ -98,7 +101,7 @@ class MorePage extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => const ExpenseTypesView(empresaId: ''),
+                    builder: (_) => ExpenseTypesView(empresaId: session.empresaId),
                   ),
                 );
               },

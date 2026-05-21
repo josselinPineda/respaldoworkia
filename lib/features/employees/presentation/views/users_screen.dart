@@ -200,31 +200,10 @@ class _UsersScreenContentState extends State<_UsersScreenContent> {
               ),
               child: _filtrosVisibles
                   ? Padding(
+                      key: const ValueKey('user-filters'),
                       padding: const EdgeInsets.only(top: 8.0, bottom: 12.0),
                       child: Row(
                         children: [
-                          Expanded(
-                            child: DropdownSearch<String>(
-                              items: (f, p) => [
-                                'Todos',
-                                'Activos',
-                                'Inactivos',
-                              ],
-                              selectedItem: vm.statusFilter,
-                              decoratorProps: DropDownDecoratorProps(
-                                decoration: InputDecoration(
-                                  labelText: t.statusLabel,
-                                  isDense: true,
-                                  border: const OutlineInputBorder(),
-                                ),
-                              ),
-                              popupProps: const PopupProps.menu(
-                                fit: FlexFit.loose,
-                              ),
-                              onChanged: vm.setStatusFilter,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
                           Expanded(
                             child: DropdownSearch<String>(
                               items: (f, p) => [

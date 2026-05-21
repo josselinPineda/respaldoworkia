@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "713429972209",
+    "project_id": "workia-f1234",
+    "storage_bucket": "workia-f1234.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713429972209:android:1b02abd4b92e82a603e550",
+        "android_client_info": {
+          "package_name": "com.sapinfhn.workia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHMHTEb0fG30U3NLaBQtZApQOJHzaHgV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -84,35 +84,42 @@ class DashboardPage extends StatelessWidget {
 
   /// Four metric cards laid out in a 2×2 grid.
   Widget _buildMetricsGrid(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      crossAxisSpacing: 12,
-      mainAxisSpacing: 12,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-
-      children: [
-        _MetricCard(
-          title: AppLocalizations.of(context)!.jobsTodayMetric,
-          value: '3',
-          color: Colors.blue,
-        ),
-        _MetricCard(
-          title: AppLocalizations.of(context)!.registeredHoursMetric,
-          value: '6.5',
-          color: Colors.blueGrey, // Semantic neutral for info
-        ),
-        _MetricCard(
-          title: AppLocalizations.of(context)!.completedJobsMetric,
-          value: '12',
-          color: Colors.green, // Semantic Success
-        ),
-        _MetricCard(
-          title: AppLocalizations.of(context)!.pendingJobsMetric,
-          value: '5',
-          color: Colors.orange,
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final w = constraints.maxWidth;
+        final crossAxisCount = w >= 900 ? 4 : (w >= 600 ? 3 : 2);
+        final aspect = w >= 900 ? 2.2 : (w >= 600 ? 2.0 : 1.6);
+        return GridView.count(
+          crossAxisCount: crossAxisCount,
+          childAspectRatio: aspect,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            _MetricCard(
+              title: AppLocalizations.of(context)!.jobsTodayMetric,
+              value: '3',
+              color: Colors.blue,
+            ),
+            _MetricCard(
+              title: AppLocalizations.of(context)!.registeredHoursMetric,
+              value: '6.5',
+              color: Colors.blueGrey, // Semantic neutral for info
+            ),
+            _MetricCard(
+              title: AppLocalizations.of(context)!.completedJobsMetric,
+              value: '12',
+              color: Colors.green, // Semantic Success
+            ),
+            _MetricCard(
+              title: AppLocalizations.of(context)!.pendingJobsMetric,
+              value: '5',
+              color: Colors.orange,
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -397,7 +404,17 @@ class _MetricCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: const TextStyle(color: Colors.black54)),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                title,
+                maxLines: 1,
+                softWrap: false,
+                overflow: TextOverflow.visible,
+                style: const TextStyle(color: Colors.black54),
+              ),
+            ),
             const SizedBox(height: 8),
             Text(
               value,

@@ -8,7 +8,6 @@ import 'package:workia/presentation/viewmodels/usuarios_viewmodel.dart';
 import 'package:workia/presentation/viewmodels/trabajos_viewmodel.dart';
 import 'package:workia/presentation/viewmodels/sesiones_viewmodel.dart';
 import 'package:workia/presentation/providers/user_session_provider.dart';
-import 'package:workia/features/jobs/presentation/views/job_form_screen.dart';
 import 'package:workia/features/jobs/presentation/viewmodels/job_detail_viewmodel.dart';
 import 'package:workia/features/jobs/presentation/widgets/job_clients_list.dart';
 
@@ -96,14 +95,7 @@ class _JobDetailScreenContentState extends State<_JobDetailScreenContent> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.job.titulo),
-        actions: [
-          if (widget.role != 'PERF_TEC')
-            IconButton(
-              icon: const Icon(Icons.edit),
-              tooltip: t.editJobTooltip,
-              onPressed: () => _navigateToEditJob(context),
-            ),
-        ],
+        actions: const [],
       ),
       body: RefreshIndicator(
         onRefresh: _loadData,
@@ -114,21 +106,5 @@ class _JobDetailScreenContentState extends State<_JobDetailScreenContent> {
         ),
       ),
     );
-  }
-
-  Future<void> _navigateToEditJob(BuildContext context) async {
-    final asignadosVM = context.read<TrabajosAsignadosViewModel>();
-    await asignadosVM.cargarTrabajosAsignados(widget.job.empresaId);
-    if (!context.mounted) return;
-
-    final trabajosVM = context.read<TrabajosViewModel>();
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => JobFormScreen(job: widget.job, role: widget.role),
-      ),
-    );
-    if (!context.mounted) return;
-
-    await trabajosVM.cargarTrabajos(widget.job.empresaId);
   }
 }

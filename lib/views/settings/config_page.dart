@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:workia/presentation/viewmodels/empresa_viewmodel.dart';
 import 'package:workia/l10n/app_localizations.dart';
 import 'package:workia/widgets/currency_text.dart';
+import 'package:workia/presentation/providers/user_session_provider.dart';
 
 /// Settings page allowing an administrator to configure company
 /// information.  Fields are static in this example and not bound to
@@ -72,8 +73,16 @@ class _ConfigPageState extends State<ConfigPage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // cargar la empresa desde el repositorio a través del view model
       final empresaViewModel = context.read<EmpresaViewModel>();
-      if (empresaViewModel.empresa == null) {
-        await empresaViewModel.cargarEmpresa(widget.empresaId);
+      final session = context.read<UserSessionProvider>();
+      final targetEmpresaId =
+          widget.empresaId.isNotEmpty ? widget.empresaId : session.empresaId;
+      // Si el view model ya tenía una empresa cargada de una sesión anterior,
+      // forzar la carga cuando no coincide con el `empresaId` actual.
+      if (empresaViewModel.empresa == null ||
+          empresaViewModel.empresa?.id != targetEmpresaId) {
+        if (targetEmpresaId.isNotEmpty) {
+          await empresaViewModel.cargarEmpresa(targetEmpresaId);
+        }
       }
       final empresa = empresaViewModel.empresa;
       _companyNameController.text = empresa?.nombreComercial ?? '';
@@ -144,6 +153,7 @@ class _ConfigPageState extends State<ConfigPage> {
                 _buildTextField(
                   controller: _legalNameController,
                   label: t.legalNameLabel,
+                  maxLines: 4,
                 ),
                 const SizedBox(height: 12),
                 _buildTextField(

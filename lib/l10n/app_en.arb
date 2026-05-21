@@ -574,5 +574,6 @@
     },
     "forgotPasswordLink": "Forgot password?",
     "forgotPasswordDescription": "Enter your email to receive a reset link.",
-    "emailNotFoundError": "The email doesn't exist"
+    "emailNotFoundError": "The email doesn't exist",
+    "invalidPhoneError": "The phone number is not valid"
 }
